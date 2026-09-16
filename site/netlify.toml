@@ -1,0 +1,37 @@
+# Configuración de Netlify para el sitio de Naru Estética Avanzada.
+# Se activa cuando este directorio (`site/`) se conecta como "base directory" del sitio en Netlify.
+# Ver docs/06-seguridad.md para el razonamiento detrás de cada cabecera.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Fuerza HTTPS en el navegador durante 1 año, incluye subdominios.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+    # Evita que el navegador intente adivinar el tipo de contenido (mitiga ataques de sniffing).
+    X-Content-Type-Options = "nosniff"
+
+    # Evita que el sitio se embeba en un <iframe> de otro dominio (clickjacking).
+    X-Frame-Options = "DENY"
+
+    # No filtra la URL completa de origen al navegar a sitios externos.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Desactiva APIs sensibles del navegador que este sitio no necesita.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+    # Content-Security-Policy — punto de partida restrictivo.
+    # AJUSTAR si se agregan más scripts/embeds externos (analítica, WhatsApp widget, etc.):
+    # cada dominio externo debe agregarse explícitamente en vez de abrir la política.
+    # frame-src: solo Google Maps (embed de ubicación en /contacto), nada más.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# Cache largo para assets con hash en el nombre (Astro los versiona automáticamente en el build).
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

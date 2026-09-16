@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import PageHero from "../components/PageHero.astro";
+import servicesData from "../data/services.json";
+
+const categorias = servicesData.categorias;
+const servicios = servicesData.servicios.filter((s: any) => s.activo);
+
+const porCategoria = categorias.map((cat: any) => ({
+	...cat,
+	servicios: servicios.filter((s: any) => s.categoria === cat.id),
+}));
+---
+
+<Layout
+	title="Catálogo"
+	description="Catálogo de tratamientos de Naru Estética Avanzada: micropigmentación, cejas, pestañas, faciales y estética láser."
+>
+	<PageHero
+		eyebrow="Tratamientos"
+		title="Catálogo"
+		description="Precios y fotos en proceso de carga — el detalle exacto de cada tratamiento lo confirmamos por WhatsApp."
+	/>
+
+	<div class="container">
+		{
+			servicios.length === 0 ? (
+				<p class="placeholder">Catálogo en construcción — muy pronto vas a ver nuestros tratamientos acá.</p>
+			) : (
+				porCategoria
+					.filter((cat: any) => cat.servicios.length > 0)
+					.map((cat: any) => (
+						<section class="categoria">
+							<p class="eyebrow">{cat.servicios.length} tratamientos</p>
+							<h2>{cat.nombre}</h2>
+							<div class="grid">
+								{cat.servicios.map((s: any) => (
+									<ServiceCard
+										nombre={s.nombre}
+										precio={s.precio}
+										moneda={s.moneda}
+										descripcion={s.descripcion}
+									/>
+								))}
+							</div>
+						</section>
+					))
+			)
+		}
+	</div>
+
+	<style>
+		.categoria {
+			margin-bottom: var(--space-12);
+		}
+
+		.categoria h2 {
+			margin-top: var(--space-1);
+		}
+
+		.grid {
+			display: grid;
+			gap: var(--space-6);
+			margin-top: var(--space-6);
+		}
+
+		.placeholder {
+			color: var(--color-text-muted);
+			font-style: italic;
+			padding: var(--space-8) 0;
+		}
+
+		@media (min-width: 768px) {
+			.grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+	</style>
+</Layout>

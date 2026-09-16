@@ -1,0 +1,68 @@
+---
+import { formatPrecio } from "../utils/format";
+import FlowerMotif from "./FlowerMotif.astro";
+
+interface Props {
+	nombre: string;
+	precio: number | null;
+	moneda: string;
+	descripcion: string;
+}
+
+const { nombre, precio, moneda, descripcion } = Astro.props;
+---
+
+<article class="service-card">
+	<div class="service-placeholder" aria-hidden="true">
+		<FlowerMotif size={72} color="var(--color-arena)" opacity={0.55} />
+	</div>
+	<div class="service-body">
+		<h3>{nombre}</h3>
+		<p class="descripcion">{descripcion}</p>
+		{precio !== null && precio !== undefined && <p class="precio">{formatPrecio(precio, moneda)}</p>}
+	</div>
+</article>
+
+<style>
+	.service-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		transition: transform 0.25s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-3px);
+	}
+
+	.service-placeholder {
+		aspect-ratio: 4 / 3;
+		border-radius: var(--radius);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, var(--color-verde-botanico) 0%, var(--color-verde-bosque) 55%, var(--color-oro) 130%);
+		box-shadow: 0 8px 24px -12px rgba(39, 75, 26, 0.4);
+	}
+
+	.service-body h3 {
+		font-size: var(--text-lg);
+		margin: 0 0 var(--space-1);
+	}
+
+	.descripcion {
+		margin: 0;
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+	}
+
+	.precio {
+		margin: var(--space-1) 0 0;
+		font-family: var(--font-heading);
+		font-weight: 600;
+		font-size: var(--text-sm);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-accent);
+	}
+</style>

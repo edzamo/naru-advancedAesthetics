@@ -1,0 +1,327 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FlowerMotif from "../components/FlowerMotif.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import servicesData from "../data/services.json";
+
+const destacados = servicesData.servicios.filter((s: any) => s.destacado && s.activo).slice(0, 3);
+
+const porQueElegirnos = [
+	{ titulo: "Tecnología moderna", texto: "Equipos y técnicas actualizadas, no lo de siempre." },
+	{ titulo: "Atención personalizada", texto: "Cada clienta importa desde que entra hasta que sale." },
+	{ titulo: "Ambiente cuidado", texto: "Un espacio pensado con intención, en cada detalle." },
+	{ titulo: "Precio justo", texto: "Calidad real, sin pagar de más ni resignar resultados." },
+];
+---
+
+<Layout
+	title="Inicio"
+	description="Naru Estética Avanzada — calidad real, tecnología moderna y atención personalizada en Manta, Ecuador."
+>
+	<section class="hero">
+		<div class="hero-content">
+			<p class="eyebrow eyebrow-light">Manta, Ecuador</p>
+			<h1>Belleza real.<br />Precio justo.</h1>
+			<p class="hero-sub">
+				El punto medio que siempre faltó: calidad, calidez y un precio que respeta a quien
+				nos elige.
+			</p>
+			<div class="hero-actions">
+				<a class="btn btn-solid" href="/catalogo">Ver catálogo</a>
+				<a class="btn btn-outline" href="/contacto">Reservar</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="container section">
+		<p class="eyebrow">Destacados</p>
+		<h2>Lo más pedido</h2>
+		{
+			destacados.length > 0 ? (
+				<div class="grid grid-3">
+					{destacados.map((s: any) => (
+						<ServiceCard nombre={s.nombre} precio={s.precio} moneda={s.moneda} descripcion={s.descripcion} />
+					))}
+				</div>
+			) : (
+				<p class="placeholder">Catálogo en construcción — muy pronto vas a ver nuestros tratamientos acá.</p>
+			)
+		}
+	</section>
+
+	<section class="por-que">
+		<div class="container">
+			<p class="eyebrow">Por qué elegirnos</p>
+			<h2>Naru en cuatro palabras</h2>
+			<ul class="reasons">
+				{
+					porQueElegirnos.map((item) => (
+						<li>
+							<FlowerMotif size={32} color="var(--color-oro)" />
+							<div>
+								<strong>{item.titulo}</strong>
+								<span>{item.texto}</span>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="container section nosotros-extracto">
+		<div class="quote-block">
+			<FlowerMotif size={64} color="var(--color-oro)" opacity={0.7} />
+			<blockquote>
+				"Quería un lugar del que estar orgullosa. Uno que las clientas recuerden no solo
+				por el resultado, sino por cómo las hicieron sentir."
+			</blockquote>
+			<a class="link-underline" href="/nosotros">Conocer nuestra historia →</a>
+		</div>
+	</section>
+
+	<section class="ubicacion">
+		<div class="container">
+			<h2>Visítanos</h2>
+			<p>Manta, Ecuador</p>
+			<a class="btn btn-solid" href="/contacto">Cómo llegar / Contacto</a>
+		</div>
+	</section>
+
+	<style>
+		.hero {
+			/* Mockup de recepción del manual de marca (render 3D, no foto real del local) —
+			   ver docs/04-desarrollo.md. Reemplazar por foto real cuando exista. */
+			position: relative;
+			overflow: hidden;
+			display: flex;
+			align-items: flex-end;
+			min-height: 78vh;
+			background-image: url("/images/hero-recepcion.webp");
+			background-size: cover;
+			background-position: center 30%;
+			color: var(--color-arena);
+			padding: var(--space-8) var(--space-4) calc(var(--space-12) * 1.6);
+			text-align: left;
+		}
+
+		/* Scrim: cálido y liviano arriba (deja ver la madera/dorado real de la foto),
+		   concentrado solo donde se necesita legibilidad, abajo — igual que clinicamilano.it,
+		   que oscurece lo justo y deja respirar la fotografía. Nada de filtro verde plano.
+		   En mobile el recorte de "cover" deja el wordmark "NARU" de la propia foto justo
+		   donde va nuestro <h1> — se oscurece antes para que no compitan. */
+		.hero::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				180deg,
+				rgba(20, 22, 16, 0.15) 0%,
+				rgba(20, 22, 16, 0.4) 30%,
+				rgba(20, 18, 14, 0.8) 55%,
+				rgba(18, 16, 12, 0.88) 100%
+			);
+			pointer-events: none;
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 1;
+			max-width: 520px;
+			margin: 0;
+		}
+
+		.eyebrow-light {
+			color: var(--color-naranja);
+		}
+
+		.hero h1 {
+			font-size: var(--text-2xl);
+			color: var(--color-arena);
+			margin-top: var(--space-2);
+		}
+
+		.hero-sub {
+			font-size: var(--text-base);
+			color: var(--color-arena);
+			opacity: 0.9;
+			max-width: 40ch;
+			margin: var(--space-4) 0 0;
+		}
+
+		.hero-actions {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-3);
+			margin-top: var(--space-6);
+			align-items: flex-start;
+		}
+
+		.btn {
+			display: inline-block;
+			padding: var(--space-3) var(--space-8);
+			border-radius: var(--radius);
+			text-decoration: none;
+			font-family: var(--font-heading);
+			font-size: var(--text-sm);
+			text-transform: uppercase;
+			letter-spacing: var(--tracking-wide);
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		.btn:hover {
+			transform: translateY(-2px);
+		}
+
+		.btn-solid {
+			background: var(--color-naranja);
+			color: var(--color-verde-botanico);
+		}
+
+		.btn-outline {
+			border: 1px solid var(--color-arena);
+			color: var(--color-arena);
+		}
+
+		.section {
+			padding: var(--space-12) 0;
+		}
+
+		.section h2 {
+			margin-top: var(--space-1);
+		}
+
+		.grid {
+			display: grid;
+			gap: var(--space-6);
+			margin-top: var(--space-6);
+		}
+
+		.placeholder {
+			color: var(--color-text-muted);
+			font-style: italic;
+		}
+
+		.por-que {
+			background: linear-gradient(160deg, var(--color-arena-calida) 0%, var(--color-arena) 70%);
+			color: var(--color-text);
+			padding: var(--space-12) 0;
+			border-top: 1px solid rgba(39, 75, 26, 0.08);
+			border-bottom: 1px solid rgba(39, 75, 26, 0.08);
+		}
+
+		.por-que .eyebrow {
+			color: var(--color-accent);
+		}
+
+		.reasons {
+			list-style: none;
+			margin: var(--space-6) 0 0;
+			padding: 0;
+			display: grid;
+			gap: var(--space-6);
+		}
+
+		.reasons li {
+			display: flex;
+			align-items: flex-start;
+			gap: var(--space-4);
+		}
+
+		.reasons strong {
+			display: block;
+			font-family: var(--font-heading);
+			margin-bottom: var(--space-1);
+		}
+
+		.reasons span {
+			font-size: var(--text-sm);
+		}
+
+		.quote-block {
+			max-width: var(--max-content-width);
+			margin: 0 auto;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: var(--space-4);
+		}
+
+		blockquote {
+			margin: 0;
+			font-family: var(--font-display);
+			font-style: italic;
+			font-size: var(--text-lg);
+			color: var(--color-verde-bosque);
+		}
+
+		.link-underline {
+			font-family: var(--font-heading);
+			font-size: var(--text-sm);
+			text-transform: uppercase;
+			letter-spacing: var(--tracking-wide);
+			border-bottom: 1px solid var(--color-accent);
+			padding-bottom: 2px;
+		}
+
+		.ubicacion {
+			position: relative;
+			overflow: hidden;
+			background:
+				radial-gradient(50% 70% at 12% 100%, rgba(194, 115, 68, 0.4) 0%, rgba(194, 115, 68, 0) 65%),
+				var(--color-verde-botanico);
+			color: var(--color-arena);
+			text-align: center;
+			padding: var(--space-12) 0;
+		}
+
+		.ubicacion h2 {
+			color: var(--color-arena);
+		}
+
+		.ubicacion .btn-solid {
+			margin-top: var(--space-4);
+			display: inline-block;
+		}
+
+		@media (min-width: 768px) {
+			.hero {
+				min-height: 88vh;
+				padding: var(--space-8) var(--space-8) calc(var(--space-12) * 2.2);
+			}
+
+			/* En desktop el h1 no se cruza con el wordmark de la foto — overlay más liviano,
+			   deja ver mejor la madera y el logo dorado. */
+			.hero::before {
+				background: linear-gradient(
+					180deg,
+					rgba(20, 22, 16, 0.1) 0%,
+					rgba(20, 22, 16, 0.25) 45%,
+					rgba(20, 18, 14, 0.72) 82%,
+					rgba(18, 16, 12, 0.85) 100%
+				);
+			}
+
+			.hero-content {
+				max-width: 620px;
+			}
+
+			.hero h1 {
+				font-size: var(--text-3xl);
+			}
+
+			.hero-actions {
+				flex-direction: row;
+			}
+
+			.grid-3 {
+				grid-template-columns: repeat(3, 1fr);
+			}
+
+			.reasons {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+	</style>
+</Layout>

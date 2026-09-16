@@ -1,0 +1,276 @@
+---
+import "../styles/tokens.css";
+import FlowerMotif from "../components/FlowerMotif.astro";
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+
+const navLinks = [
+	{ href: "/", label: "Inicio" },
+	{ href: "/nosotros", label: "Nosotros" },
+	{ href: "/catalogo", label: "Catálogo" },
+	{ href: "/contacto", label: "Contacto" },
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title} · Naru Estética Avanzada</title>
+		<meta name="description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<header class="site-header">
+			<a href="/" class="brand" aria-label="Naru Estética Avanzada">
+				<FlowerMotif size={28} color="var(--color-oro)" class="brand-mark" />
+				<span class="brand-name">Naru</span>
+			</a>
+			<input type="checkbox" id="nav-toggle" class="nav-toggle" />
+			<label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+				<span></span>
+			</label>
+			<nav class="site-nav">
+				<ul>
+					{
+						navLinks.map((link) => (
+							<li>
+								<a href={link.href}>{link.label}</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<FlowerMotif size={56} color="var(--color-oro)" class="footer-flower" />
+			<p class="footer-brand">Naru Estética Avanzada</p>
+			<p class="footer-tagline">Belleza real. Precio justo.</p>
+			<p class="footer-location">Manta, Ecuador</p>
+			<p>
+				<a href="/contacto">Contacto / WhatsApp</a>
+			</p>
+		</footer>
+
+		<style>
+			:global(*) {
+				box-sizing: border-box;
+			}
+
+			:global(html) {
+				scroll-behavior: smooth;
+			}
+
+			:global(body) {
+				margin: 0;
+				background: var(--color-bg);
+				color: var(--color-text);
+				font-family: var(--font-body);
+				font-size: var(--text-base);
+				line-height: 1.6;
+			}
+
+			:global(h1),
+			:global(h2),
+			:global(h3) {
+				font-family: var(--font-display);
+				font-weight: 600;
+				color: var(--color-text);
+				margin: 0 0 var(--space-4);
+				line-height: 1.15;
+			}
+
+			:global(a) {
+				color: var(--color-accent);
+			}
+
+			:global(.container) {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 var(--space-4);
+			}
+
+			:global(.eyebrow) {
+				font-family: var(--font-heading);
+				font-size: var(--text-xs);
+				text-transform: uppercase;
+				letter-spacing: var(--tracking-wide);
+				color: var(--color-accent);
+			}
+
+			.site-header {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: var(--space-4) var(--space-5, var(--space-4));
+				background: var(--color-verde-botanico);
+			}
+
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: var(--space-2);
+				text-decoration: none;
+			}
+
+			.brand :global(.brand-mark) {
+				display: block;
+			}
+
+			.brand-name {
+				font-family: var(--font-display);
+				font-style: italic;
+				font-size: var(--text-lg);
+				color: var(--color-arena);
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+
+			.nav-toggle-label {
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+				cursor: pointer;
+			}
+
+			.nav-toggle-label span,
+			.nav-toggle-label::before,
+			.nav-toggle-label::after {
+				content: "";
+				width: 22px;
+				height: 1.5px;
+				background: var(--color-arena);
+				display: block;
+			}
+
+			.site-nav {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				right: 0;
+				background: var(--color-verde-botanico);
+				display: none;
+				border-top: 1px solid rgba(241, 239, 239, 0.15);
+			}
+
+			.nav-toggle:checked ~ .site-nav {
+				display: block;
+			}
+
+			.site-nav ul {
+				list-style: none;
+				margin: 0;
+				padding: var(--space-4) var(--space-5, var(--space-4));
+				display: flex;
+				flex-direction: column;
+				gap: var(--space-4);
+			}
+
+			.site-nav a {
+				color: var(--color-arena);
+				text-decoration: none;
+				font-family: var(--font-heading);
+				font-size: var(--text-sm);
+				text-transform: uppercase;
+				letter-spacing: var(--tracking-wide);
+				opacity: 0.9;
+				transition: opacity 0.2s;
+			}
+
+			.site-nav a:hover {
+				opacity: 1;
+			}
+
+			main {
+				display: block;
+			}
+
+			.site-footer {
+				background: var(--color-verde-botanico);
+				color: var(--color-arena);
+				text-align: center;
+				padding: var(--space-12) var(--space-4) var(--space-8);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: var(--space-1);
+			}
+
+			.footer-flower {
+				margin-bottom: var(--space-2);
+				opacity: 0.9;
+			}
+
+			.footer-brand {
+				font-family: var(--font-display);
+				font-style: italic;
+				font-size: var(--text-lg);
+				margin: 0;
+			}
+
+			.footer-tagline {
+				margin: 0;
+				font-size: var(--text-sm);
+				color: var(--color-arena);
+				opacity: 0.75;
+			}
+
+			.footer-location {
+				margin: var(--space-2) 0 0;
+				font-size: var(--text-sm);
+			}
+
+			.site-footer a {
+				color: var(--color-naranja);
+				font-family: var(--font-heading);
+				font-size: var(--text-sm);
+				text-decoration: none;
+			}
+
+			/* Desktop (>= 768px): nav siempre visible, sin hamburguesa */
+			@media (min-width: 768px) {
+				.site-header {
+					padding: var(--space-4) var(--space-8);
+				}
+
+				.nav-toggle-label {
+					display: none;
+				}
+
+				.site-nav {
+					position: static;
+					display: block;
+					background: none;
+					border-top: none;
+				}
+
+				.site-nav ul {
+					flex-direction: row;
+					padding: 0;
+					gap: var(--space-8);
+				}
+			}
+		</style>
+	</body>
+</html>

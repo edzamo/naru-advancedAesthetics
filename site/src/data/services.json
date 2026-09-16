@@ -1,0 +1,379 @@
+{
+  "categorias": [
+    {
+      "id": "micropigmentacion",
+      "nombre": "Micropigmentación"
+    },
+    {
+      "id": "cejas",
+      "nombre": "Cejas"
+    },
+    {
+      "id": "pestanas",
+      "nombre": "Pestañas"
+    },
+    {
+      "id": "facial",
+      "nombre": "Tratamientos Faciales"
+    },
+    {
+      "id": "estetica-laser",
+      "nombre": "Estética Láser"
+    }
+  ],
+
+  "servicios": [
+    {
+      "id": "ombre-brows",
+      "nombre": "Cejas Efecto Polvo / Ombré Brows",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Micropigmentación de cejas con efecto sombreado y degradado para lograr mayor definición y armonía.",
+      "imagen": "ombre-brows.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "power-brows",
+      "nombre": "Power Brows",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Técnica de micropigmentación con un efecto más definido e intenso para resaltar la forma de las cejas.",
+      "imagen": "power-brows.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "microblading",
+      "nombre": "Microblading",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Técnica pelo a pelo diseñada para conseguir unas cejas naturales, definidas y armoniosas.",
+      "imagen": "microblading.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "microshading",
+      "nombre": "Microshading",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Técnica mixta que combina trazos pelo a pelo con sombreado para conseguir mayor definición y densidad.",
+      "imagen": "microshading.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "micropigmentacion-labios",
+      "nombre": "Micropigmentación de Labios",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Procedimiento que realza el tono y definición de los labios para conseguir un resultado armonioso y natural.",
+      "imagen": "micropigmentacion-labios.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "neutralizacion-labios",
+      "nombre": "Neutralización de Labios",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Técnica orientada a equilibrar tonos oscuros o irregulares antes de alcanzar el color deseado.",
+      "imagen": "neutralizacion-labios.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "retoque-cejas",
+      "nombre": "Retoque de Micropigmentación de Cejas",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Sesión de retoque para reforzar pigmento, definición y uniformidad del resultado.",
+      "imagen": "retoque-cejas.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "retoque-labios",
+      "nombre": "Retoque de Micropigmentación de Labios",
+      "categoria": "micropigmentacion",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Sesión complementaria para reforzar el tono y uniformidad de la micropigmentación labial.",
+      "imagen": "retoque-labios.webp",
+      "destacado": false,
+      "activo": true
+    },
+
+    {
+      "id": "diseno-cejas",
+      "nombre": "Diseño de Cejas",
+      "categoria": "cejas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Diseño personalizado de acuerdo con las facciones y forma natural de las cejas.",
+      "imagen": "diseno-cejas.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "depilacion-cejas-cera",
+      "nombre": "Depilación de Cejas con Cera",
+      "categoria": "cejas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Definición y limpieza del contorno de las cejas mediante depilación con cera.",
+      "imagen": "depilacion-cejas-cera.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "henna-cejas",
+      "nombre": "Henna para Cejas",
+      "categoria": "cejas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Coloración temporal para aportar definición visual y mejorar la apariencia de las cejas.",
+      "imagen": "henna-cejas.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "laminado-cejas",
+      "nombre": "Laminado de Cejas",
+      "categoria": "cejas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento para ordenar, moldear y realzar visualmente el volumen natural de las cejas.",
+      "imagen": "laminado-cejas.webp",
+      "destacado": true,
+      "activo": true
+    },
+
+    {
+      "id": "pestanas-clasicas",
+      "nombre": "Pestañas Clásicas",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Extensiones pelo a pelo para conseguir un acabado natural, ligero y elegante.",
+      "imagen": "pestanas-clasicas.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "pestanas-hibridas",
+      "nombre": "Pestañas Híbridas",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Combinación de técnicas para conseguir mayor densidad manteniendo un resultado equilibrado.",
+      "imagen": "pestanas-hibridas.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "efecto-rimel",
+      "nombre": "Efecto Rímel",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Diseño de pestañas con mayor definición e intensidad, inspirado en el acabado del rímel.",
+      "imagen": "efecto-rimel.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "efecto-wispy",
+      "nombre": "Efecto Wispy",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Diseño con diferentes longitudes que crea un efecto texturizado, ligero y moderno.",
+      "imagen": "efecto-wispy.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "volumen-tecnologico",
+      "nombre": "Volumen Tecnológico",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Técnica diseñada para aportar mayor volumen y densidad manteniendo ligereza.",
+      "imagen": "volumen-tecnologico.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "lifting-pestanas",
+      "nombre": "Lifting de Pestañas",
+      "categoria": "pestanas",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Realza la curvatura de las pestañas naturales para conseguir una mirada más abierta y definida.",
+      "imagen": "lifting-pestanas.webp",
+      "destacado": true,
+      "activo": true
+    },
+
+    {
+      "id": "limpieza-facial-profunda",
+      "nombre": "Limpieza Facial Profunda",
+      "categoria": "facial",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": 60,
+      "descripcion": "Protocolo de limpieza profunda para retirar impurezas y mejorar la apariencia y textura de la piel.",
+      "imagen": "limpieza-facial-profunda.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "limpieza-facial-express",
+      "nombre": "Limpieza Facial Express",
+      "categoria": "facial",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Limpieza facial rápida para mantener la piel fresca, limpia y cuidada.",
+      "imagen": "limpieza-facial-express.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "hidratacion-facial",
+      "nombre": "Hidratación Facial",
+      "categoria": "facial",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento enfocado en aportar hidratación y mejorar la suavidad y luminosidad de la piel.",
+      "imagen": "hidratacion-facial.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "peeling-quimico",
+      "nombre": "Peeling Químico",
+      "categoria": "facial",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Renovación química superficial seleccionada según las características y necesidades de la piel.",
+      "imagen": "peeling-quimico.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "dermaplaning",
+      "nombre": "Dermaplaning",
+      "categoria": "facial",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Exfoliación superficial que retira células muertas y vello fino para mejorar la suavidad y luminosidad.",
+      "imagen": "dermaplaning.webp",
+      "destacado": false,
+      "activo": true
+    },
+
+    {
+      "id": "naru-smooth",
+      "nombre": "NARU Smooth - Tratamiento de Estrías",
+      "categoria": "estetica-laser",
+      "precio": 25,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento con láser CO₂ fraccionado enfocado en mejorar progresivamente la apariencia y textura de la piel con estrías.",
+      "imagen": "naru-smooth-estrias.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "laser-manchas-pigmentacion",
+      "nombre": "Tratamiento de Manchas y Pigmentación",
+      "categoria": "estetica-laser",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento con láser CO₂ fraccionado orientado a mejorar la apariencia de manchas y la uniformidad visual de la piel.",
+      "imagen": "laser-manchas-pigmentacion.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "laser-cicatrices-acne",
+      "nombre": "Tratamiento de Cicatrices de Acné",
+      "categoria": "estetica-laser",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento con láser CO₂ fraccionado orientado a mejorar progresivamente la textura y apariencia de cicatrices de acné.",
+      "imagen": "laser-cicatrices-acne.webp",
+      "destacado": true,
+      "activo": true
+    },
+    {
+      "id": "laser-poros-textura",
+      "nombre": "Tratamiento de Poros y Textura",
+      "categoria": "estetica-laser",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento orientado a mejorar visualmente la textura irregular y la apariencia de poros dilatados.",
+      "imagen": "laser-poros-textura.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "laser-lineas-finas",
+      "nombre": "Tratamiento de Líneas Finas",
+      "categoria": "estetica-laser",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Tratamiento con láser fraccionado orientado a favorecer la renovación cutánea y mejorar la apariencia de líneas finas.",
+      "imagen": "laser-lineas-finas.webp",
+      "destacado": false,
+      "activo": true
+    },
+    {
+      "id": "rejuvenecimiento-laser",
+      "nombre": "Rejuvenecimiento Facial",
+      "categoria": "estetica-laser",
+      "precio": null,
+      "moneda": "USD",
+      "duracion_min": null,
+      "descripcion": "Protocolo de renovación cutánea con láser fraccionado enfocado en mejorar textura y apariencia general de la piel.",
+      "imagen": "rejuvenecimiento-laser.webp",
+      "destacado": false,
+      "activo": true
+    }
+  ]
+}

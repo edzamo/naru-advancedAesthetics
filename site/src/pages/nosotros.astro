@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FlowerMotif from "../components/FlowerMotif.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<Layout
+	title="Nosotros"
+	description="La historia detrás de Naru Estética Avanzada: por qué existimos y qué nos diferencia."
+>
+	<PageHero eyebrow="Nuestra historia" title="Quiénes somos" />
+
+	<div class="container prose">
+		<p>
+			Un studio de belleza nace cuando alguien decide que las cosas se pueden hacer mejor.
+			Mejor trato, mejor resultado, mejor experiencia. Eso es exactamente lo que somos — un
+			espacio creado con intención, donde cada detalle existe por una razón y cada clienta
+			importa desde que entra hasta que sale.
+		</p>
+
+		<p>
+			No somos un salón cualquiera ni un centro de descuentos. Somos el punto medio que
+			siempre faltó: calidad real, ambiente cuidado y un precio que respeta a quien nos
+			elige.
+		</p>
+
+		<h2>Nuestra historia</h2>
+
+		<p>
+			Todo empezó con una convicción simple: que las mujeres de Manta merecían algo mejor.
+			Con más de cuatro años dedicados al mundo de la belleza, nuestra fundadora conocía el
+			mercado por dentro. Sabía lo que funcionaba, lo que faltaba y lo que las clientas
+			realmente buscaban sin encontrar. Un lugar que combinara calidad, calidez y un precio
+			honesto.
+		</p>
+
+		<p>
+			Con esa claridad construyó el studio. Un espacio donde nada es casualidad — desde el
+			ambiente hasta el trato, desde los productos hasta los resultados. Un lugar hecho para
+			que cada clienta salga sintiéndose exactamente como merece.
+		</p>
+
+		<div class="quote-block">
+			<FlowerMotif size={48} color="var(--color-verde-salvia)" />
+			<blockquote>
+				"Quería un lugar del que estar orgullosa. Uno que las clientas recuerden no solo
+				por el resultado, sino por cómo las hicieron sentir."
+			</blockquote>
+		</div>
+
+		<h2>Misión</h2>
+		<p>
+			Ofrecer servicios de belleza de calidad real con tecnología moderna, atención
+			personalizada y un ambiente cuidado — a un precio justo para quien nos elige. Que cada
+			clienta salga sintiéndose la mejor versión de sí misma.
+		</p>
+
+		<h2>Visión</h2>
+		<p>
+			Ser el studio de referencia en Manta. El lugar al que las mujeres regresan porque
+			confían, recomiendan porque les funciona y eligen porque saben que aquí las cosas se
+			hacen bien. Y desde esa base, seguir creciendo.
+		</p>
+	</div>
+
+	<style>
+		.prose {
+			padding-bottom: var(--space-12);
+		}
+
+		.prose h2 {
+			margin-top: var(--space-8);
+		}
+
+		.quote-block {
+			margin: var(--space-8) 0;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: var(--space-3);
+		}
+
+		blockquote {
+			margin: 0;
+			font-family: var(--font-display);
+			font-style: italic;
+			font-size: var(--text-lg);
+			color: var(--color-verde-bosque);
+		}
+	</style>
+</Layout>

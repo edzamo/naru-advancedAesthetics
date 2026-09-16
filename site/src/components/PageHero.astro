@@ -1,0 +1,40 @@
+---
+/**
+ * Encabezado estándar de páginas internas (Nosotros, Catálogo): solo título, sin foto
+ * y sin bloque de color grande — pegado al nav, mismo tratamiento compacto en ambas páginas.
+ */
+interface Props {
+	eyebrow: string;
+	title: string;
+	description?: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<section class="page-hero">
+	<div class="container">
+		<p class="eyebrow">{eyebrow}</p>
+		<h1>{title}</h1>
+		{description && <p class="intro">{description}</p>}
+	</div>
+</section>
+
+<style>
+	.page-hero {
+		text-align: center;
+		padding: var(--space-6) 0 var(--space-4);
+	}
+
+	.intro {
+		color: var(--color-text-muted);
+		max-width: 48ch;
+		margin: var(--space-2) auto 0;
+	}
+
+	@media (min-width: 768px) {
+		.page-hero {
+			padding: var(--space-8) 0 var(--space-4);
+		}
+	}
+</style>
