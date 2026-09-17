@@ -99,12 +99,16 @@ Se implementó la capa de medición a partir de un prompt que el usuario trajo d
 Orden acordado con el usuario. Cada fase depende de que la anterior esté cerrada.
 
 **Fase 1 — Deploy**
-- [ ] Commit + push del trabajo pendiente a `main` en GitHub (`edzamo/naru-advancedAesthetics`).
-- [ ] Conectar el repo a Netlify (`app.netlify.com/teams/edzamo13`) — "Add new site → Import an existing project → GitHub" → seleccionar el repo.
-- [ ] En la configuración del sitio en Netlify: **Base directory = `site`**, **Build command = `npm run build`**, **Publish directory = `dist`** (relativo al base directory — así lo espera `site/netlify.toml`).
-- [ ] Primer deploy — confirmar que las 4 páginas cargan en la URL que da Netlify (`algo.netlify.app`).
+- [x] Commit + push del trabajo pendiente a `main` en GitHub (`edzamo/naru-advancedAesthetics`).
+- [x] Conectar el repo a Netlify (`app.netlify.com/teams/edzamo13` → proyecto `naru-advanced-aesthetics`).
+- [x] Corregir configuración de build en Netlify: **Base directory = `site`**, **Build command = `npm run build`**, **Publish directory = `dist`** — el import inicial había quedado sin estos valores (Netlify publicaba los archivos crudos del repo en vez de compilar el sitio).
+- [x] Corregir acceso público: el sitio había quedado con `sso_login: all` (pedía login de Netlify hasta para la página pública, por eso daba 401 a cualquier visitante). Se ajustó a `sso_login_context: non_production` — igual que `edwin-zamora-ec` y `devmentor-ec`: producción pública, deploy previews (de PRs) protegidos con login del team.
+- [x] Primer deploy correcto — las 4 páginas cargan en **https://naru-advanced-aesthetics.netlify.app**.
+- [x] Confirmado: el team de Netlify (`edzamo13`) tiene un solo miembro (Owner, `edzamo13@gmail.com`) — nadie más puede publicar cambios desde el dashboard.
 - [ ] Decidir dominio propio o quedarse con el subdominio gratuito de Netlify por ahora.
 - [ ] Si hay dominio propio: conectarlo en Netlify y actualizar `site` en `astro.config.mjs` con la URL real.
+
+**Flujo de trabajo Git (acordado 2026-09-17):** de ahora en adelante, cambios nuevos van en una rama `feat/<nombre-corto>` en vez de directo a `main`. Al abrir un Pull Request contra `main`, Netlify genera automáticamente una Deploy Preview protegida por login del team (gracias al `non_production` de arriba) — se revisa ahí antes de mergear. `main` sigue siendo la rama de producción: todo lo que llega ahí se publica automáticamente y en público. `allowed_branches` en Netlify sigue restringido a `main` (no se generan URLs públicas de ramas sueltas sin PR).
 
 **Fase 2 — Analítica**
 - [ ] Usuario crea la propiedad GA4 en analytics.google.com (instrucciones en el skill `naru-analytics` y en el resumen que se le dio en chat).
