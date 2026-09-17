@@ -60,12 +60,7 @@ const navLinks = [
 		{gaId && (
 			<>
 				<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-				<script define:vars={{ gaId }}>
-					window.dataLayer = window.dataLayer || [];
-					function gtag() { dataLayer.push(arguments); }
-					gtag("js", new Date());
-					gtag("config", gaId);
-				</script>
+				<script is:inline src="/scripts/analytics.js" data-ga-id={gaId}></script>
 			</>
 		)}
 	</head>
@@ -118,34 +113,10 @@ const navLinks = [
 			</p>
 		</footer>
 
-		<script>
-			// Rastreo de eventos reales del sitio (GA4) por delegación: un solo listener
-			// clasifica el clic según a dónde apunta el link, en vez de repetir listeners
-			// por página. No hace nada si GA4 todavía no está configurado (ver Layout.astro).
-			document.addEventListener("click", (event) => {
-				const gtag = (window as any).gtag;
-				if (typeof gtag !== "function") return;
-
-				const link = (event.target as HTMLElement)?.closest("a");
-				if (!link) return;
-
-				const href = link.getAttribute("href") || "";
-
-				if (href.includes("wa.me")) {
-					gtag("event", "click_whatsapp", { link_url: href });
-				} else if (href.includes("instagram.com")) {
-					gtag("event", "click_instagram", { link_url: href });
-				} else if (href.includes("facebook.com")) {
-					gtag("event", "click_facebook", { link_url: href });
-				} else if (href.includes("maps.app.goo.gl") || href.includes("google.com/maps")) {
-					gtag("event", "click_maps", { link_url: href });
-				} else if (href === "/catalogo") {
-					gtag("event", "click_ver_catalogo", { from_path: location.pathname });
-				} else if (href === "/contacto") {
-					gtag("event", "click_reservar", { from_path: location.pathname });
-				}
-			});
-		</script>
+		<!-- Externo (no inline) a propósito: la CSP no permite scripts inline sin
+		     'unsafe-inline' — mejor sacar el JS a un archivo propio que debilitar la
+		     política. Ver site/public/scripts/tracking.js -->
+		<script is:inline src="/scripts/tracking.js"></script>
 
 		<style>
 			:global(*) {

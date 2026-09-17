@@ -29,7 +29,12 @@
     # cada dominio externo debe agregarse explícitamente en vez de abrir la política.
     # frame-src: solo Google Maps (embed de ubicación en /contacto), nada más.
     # script-src/connect-src/img-src: agregado Google Analytics (GA4) — ver docs/04-desarrollo.md.
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    # style-src/font-src: Google Fonts — bug encontrado en producción, faltaba desde el
+    # principio (fonts.googleapis.com bloqueado, el sitio caía a fuentes de sistema).
+    # A propósito NO hay 'unsafe-inline' en script-src: los scripts propios del sitio
+    # (analytics.js, tracking.js) son archivos externos en /scripts/, no inline — así la
+    # política sigue bloqueando cualquier script inyectado (XSS) sin necesitar excepciones.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 
 # Cache largo para assets con hash en el nombre (Astro los versiona automáticamente en el build).
 [[headers]]
