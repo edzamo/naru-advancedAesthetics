@@ -49,3 +49,27 @@ git fetch origin
 git log origin/main --oneline -5
 ```
 Y si hace falta confirmar que Netlify ya redesplegó con el cambio, se puede pedir usar el skill `naru-analytics` (si aplica) o revisar el sitio en vivo con `curl`/Playwright buscando la evidencia concreta del cambio (no asumir que "ya debería estar", verificarlo).
+
+## Limpieza de ramas (después de confirmar merges)
+
+Una vez que el cliente confirma que uno o más PRs ya se mergearon, limpiar las ramas que quedaron obsoletas — el repo no debería acumular ramas viejas indefinidamente.
+
+```bash
+git fetch origin --prune
+# Para cada rama que no sea main, confirmar si ya está fusionada:
+git log origin/main..origin/<rama> --oneline
+# Si no imprime nada, está 100% mergeada -> segura de borrar:
+git push origin --delete <rama>
+git branch -D <rama> 2>/dev/null  # si existe copia local
+```
+
+**Nunca borrar una rama que tenga commits no mergeados** sin antes preguntar — puede haber trabajo en progreso que el cliente todavía no revisó. Si una rama tiene contenido único sin mergear pero ya no tiene sentido mantenerla separada (ej. quedó chica y desactualizada), la opción es hacer `git cherry-pick` de sus commits hacia la rama activa vigente antes de borrarla — nunca borrar contenido sin haberlo preservado en algún lado primero.
+
+Regla acordada con el cliente (2026-09-18): mantener como máximo **una rama de feature activa a la vez** (la última) — evitar que se acumulen varias ramas paralelas sin mergear.
+
+## Protección de la rama `main` (chequeo, no autoacción)
+
+GitHub sugiere activar protección en `main` (bloquear force-push/borrado, exigir Pull Request antes de mergear). Esto **no es una operación de git** — es una configuración del repositorio en GitHub que requiere la API de GitHub con un token con permisos de administrador, algo que este agente no tiene por defecto.
+
+- Si hay un token de GitHub disponible en el entorno con esos permisos, se puede configurar vía API (`PUT /repos/{owner}/{repo}/branches/main/protection`) con, como mínimo: exigir Pull Request antes de mergear, bloquear force-push, bloquear borrado de la rama.
+- Si no hay token, **no pedirlo por cuenta propia ni intentar instalar `gh`** — explicarle al cliente los pasos manuales (GitHub → repo → Settings → Branches → Add branch protection rule → rama `main` → marcar "Require a pull request before merging", "Restrict deletions", "Do not allow force pushes") y preguntar si prefiere hacerlo él o dar un token para automatizarlo.
