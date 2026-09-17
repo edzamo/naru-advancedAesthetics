@@ -5,9 +5,17 @@ import FlowerMotif from "../components/FlowerMotif.astro";
 interface Props {
 	title: string;
 	description: string;
+	image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image = "/images/og-default.jpg" } = Astro.props;
+const fullTitle = `${title} · Naru Estética Avanzada`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImageUrl = new URL(image, Astro.site ?? Astro.url.origin);
+
+// GA4 — no se carga nada hasta tener un Measurement ID real configurado.
+// Ver docs/04-desarrollo.md para instrucciones de alta y dónde poner la variable en Netlify.
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 const navLinks = [
 	{ href: "/", label: "Inicio" },
@@ -23,8 +31,24 @@ const navLinks = [
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title} · Naru Estética Avanzada</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+
+		<!-- Open Graph (vista previa al compartir por WhatsApp/Instagram/Facebook) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Naru Estética Avanzada" />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:locale" content="es_EC" />
+
+		<!-- Twitter Card (fallback, misma info que Open Graph) -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,12 +56,30 @@ const navLinks = [
 			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
+
+		{gaId && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+				<script define:vars={{ gaId }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag() { dataLayer.push(arguments); }
+					gtag("js", new Date());
+					gtag("config", gaId);
+				</script>
+			</>
+		)}
 	</head>
 	<body>
 		<header class="site-header">
 			<a href="/" class="brand" aria-label="Naru Estética Avanzada">
 				<FlowerMotif size={28} color="var(--color-oro)" class="brand-mark" />
-				<span class="brand-name">Naru</span>
+				<img
+					class="brand-wordmark"
+					src="/images/brand/wordmark-arena.webp"
+					alt="Naru Estética Avanzada"
+					width="220"
+					height="77"
+				/>
 			</a>
 			<input type="checkbox" id="nav-toggle" class="nav-toggle" />
 			<label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
@@ -62,13 +104,48 @@ const navLinks = [
 
 		<footer class="site-footer">
 			<FlowerMotif size={56} color="var(--color-oro)" class="footer-flower" />
-			<p class="footer-brand">Naru Estética Avanzada</p>
+			<img
+				class="footer-wordmark"
+				src="/images/brand/wordmark-arena.webp"
+				alt="Naru Estética Avanzada"
+				width="220"
+				height="77"
+			/>
 			<p class="footer-tagline">Belleza real. Precio justo.</p>
 			<p class="footer-location">Manta, Ecuador</p>
 			<p>
 				<a href="/contacto">Contacto / WhatsApp</a>
 			</p>
 		</footer>
+
+		<script>
+			// Rastreo de eventos reales del sitio (GA4) por delegación: un solo listener
+			// clasifica el clic según a dónde apunta el link, en vez de repetir listeners
+			// por página. No hace nada si GA4 todavía no está configurado (ver Layout.astro).
+			document.addEventListener("click", (event) => {
+				const gtag = (window as any).gtag;
+				if (typeof gtag !== "function") return;
+
+				const link = (event.target as HTMLElement)?.closest("a");
+				if (!link) return;
+
+				const href = link.getAttribute("href") || "";
+
+				if (href.includes("wa.me")) {
+					gtag("event", "click_whatsapp", { link_url: href });
+				} else if (href.includes("instagram.com")) {
+					gtag("event", "click_instagram", { link_url: href });
+				} else if (href.includes("facebook.com")) {
+					gtag("event", "click_facebook", { link_url: href });
+				} else if (href.includes("maps.app.goo.gl") || href.includes("google.com/maps")) {
+					gtag("event", "click_maps", { link_url: href });
+				} else if (href === "/catalogo") {
+					gtag("event", "click_ver_catalogo", { from_path: location.pathname });
+				} else if (href === "/contacto") {
+					gtag("event", "click_reservar", { from_path: location.pathname });
+				}
+			});
+		</script>
 
 		<style>
 			:global(*) {
@@ -136,11 +213,19 @@ const navLinks = [
 				display: block;
 			}
 
-			.brand-name {
-				font-family: var(--font-display);
-				font-style: italic;
-				font-size: var(--text-lg);
-				color: var(--color-arena);
+			/* Wordmark real del manual de marca (portada, recortado y recoloreado a Arena) —
+			   ver docs/04-desarrollo.md. No es texto con fuente web: es el logotipo exacto,
+			   con el detalle del trazo que conecta la A con la R, imposible de replicar con
+			   una fuente del sistema. */
+			.brand-wordmark {
+				height: 36px;
+				width: auto;
+			}
+
+			@media (min-width: 768px) {
+				.brand-wordmark {
+					height: 40px;
+				}
 			}
 
 			.nav-toggle {
@@ -222,11 +307,10 @@ const navLinks = [
 				opacity: 0.9;
 			}
 
-			.footer-brand {
-				font-family: var(--font-display);
-				font-style: italic;
-				font-size: var(--text-lg);
-				margin: 0;
+			.footer-wordmark {
+				height: 44px;
+				width: auto;
+				margin-bottom: var(--space-1);
 			}
 
 			.footer-tagline {

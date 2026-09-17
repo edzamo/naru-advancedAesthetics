@@ -1,92 +1,176 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FlowerMotif from "../components/FlowerMotif.astro";
-import PageHero from "../components/PageHero.astro";
 ---
 
 <Layout
 	title="Nosotros"
 	description="La historia detrás de Naru Estética Avanzada: por qué existimos y qué nos diferencia."
 >
-	<PageHero eyebrow="Nuestra historia" title="Quiénes somos" />
+	<div class="photo-backdrop" style="background-image: url(/images/hero-nosotros.webp);"></div>
 
-	<div class="container prose">
-		<p>
-			Un studio de belleza nace cuando alguien decide que las cosas se pueden hacer mejor.
-			Mejor trato, mejor resultado, mejor experiencia. Eso es exactamente lo que somos — un
-			espacio creado con intención, donde cada detalle existe por una razón y cada clienta
-			importa desde que entra hasta que sale.
-		</p>
+	<div class="container">
+		<div class="content-card prose">
+			<p class="eyebrow eyebrow-light">Nuestra historia</p>
+			<h1>Quiénes somos</h1>
 
-		<p>
-			No somos un salón cualquiera ni un centro de descuentos. Somos el punto medio que
-			siempre faltó: calidad real, ambiente cuidado y un precio que respeta a quien nos
-			elige.
-		</p>
+			<p>
+				Un studio de belleza nace cuando alguien decide que las cosas se pueden hacer mejor.
+				Mejor trato, mejor resultado, mejor experiencia. Eso es exactamente lo que somos — un
+				espacio creado con intención, donde cada detalle existe por una razón y cada clienta
+				importa desde que entra hasta que sale.
+			</p>
 
-		<h2>Nuestra historia</h2>
+			<p>
+				No somos un salón cualquiera ni un centro de descuentos. Somos el punto medio que
+				siempre faltó: calidad real, ambiente cuidado y un precio que respeta a quien nos
+				elige.
+			</p>
 
-		<p>
-			Todo empezó con una convicción simple: que las mujeres de Manta merecían algo mejor.
-			Con más de cuatro años dedicados al mundo de la belleza, nuestra fundadora conocía el
-			mercado por dentro. Sabía lo que funcionaba, lo que faltaba y lo que las clientas
-			realmente buscaban sin encontrar. Un lugar que combinara calidad, calidez y un precio
-			honesto.
-		</p>
+			<h2>Nuestra historia</h2>
 
-		<p>
-			Con esa claridad construyó el studio. Un espacio donde nada es casualidad — desde el
-			ambiente hasta el trato, desde los productos hasta los resultados. Un lugar hecho para
-			que cada clienta salga sintiéndose exactamente como merece.
-		</p>
+			<div class="quote-block">
+				<div class="quote-glow"></div>
+				<FlowerMotif size={64} color="var(--color-naranja)" />
+				<blockquote>
+					"Quería un lugar del que estar orgullosa. Uno que las clientas recuerden no solo
+					por el resultado, sino por cómo las hicieron sentir."
+				</blockquote>
+			</div>
 
-		<div class="quote-block">
-			<FlowerMotif size={48} color="var(--color-verde-salvia)" />
-			<blockquote>
-				"Quería un lugar del que estar orgullosa. Uno que las clientas recuerden no solo
-				por el resultado, sino por cómo las hicieron sentir."
-			</blockquote>
+			<p>
+				Todo empezó con una convicción simple: que las mujeres de Manta merecían algo mejor.
+				Con más de cuatro años dedicados al mundo de la belleza, nuestra fundadora conocía el
+				mercado por dentro. Sabía lo que funcionaba, lo que faltaba y lo que las clientas
+				realmente buscaban sin encontrar. Un lugar que combinara calidad, calidez y un precio
+				honesto.
+			</p>
+
+			<p>
+				Con esa claridad construyó el studio. Un espacio donde nada es casualidad — desde el
+				ambiente hasta el trato, desde los productos hasta los resultados. Un lugar hecho para
+				que cada clienta salga sintiéndose exactamente como merece.
+			</p>
+
+			<h2>Misión</h2>
+			<p>
+				Ofrecer servicios de belleza de calidad real con tecnología moderna, atención
+				personalizada y un ambiente cuidado — a un precio justo para quien nos elige. Que cada
+				clienta salga sintiéndose la mejor versión de sí misma.
+			</p>
+
+			<h2>Visión</h2>
+			<p>
+				Ser el studio de referencia en Manta. El lugar al que las mujeres regresan porque
+				confían, recomiendan porque les funciona y eligen porque saben que aquí las cosas se
+				hacen bien. Y desde esa base, seguir creciendo.
+			</p>
 		</div>
-
-		<h2>Misión</h2>
-		<p>
-			Ofrecer servicios de belleza de calidad real con tecnología moderna, atención
-			personalizada y un ambiente cuidado — a un precio justo para quien nos elige. Que cada
-			clienta salga sintiéndose la mejor versión de sí misma.
-		</p>
-
-		<h2>Visión</h2>
-		<p>
-			Ser el studio de referencia en Manta. El lugar al que las mujeres regresan porque
-			confían, recomiendan porque les funciona y eligen porque saben que aquí las cosas se
-			hacen bien. Y desde esa base, seguir creciendo.
-		</p>
 	</div>
 
 	<style>
-		.prose {
-			padding-bottom: var(--space-12);
+		/* Foto de marca fija detrás de toda la página (no solo la cabecera) — ver
+		   docs/04-desarrollo.md. Sin tarjeta: el texto va directo sobre la foto, en color
+		   claro, con un degradado oscuro más fuerte para que párrafos largos se sigan
+		   leyendo bien sin caja/recuadro de por medio. */
+		.photo-backdrop {
+			position: fixed;
+			inset: 0;
+			z-index: -1;
+			background-size: cover;
+			background-position: center 30%;
+		}
+
+		.photo-backdrop::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			/* La foto es clara (cajas crema sobre fondo claro), así que el texto claro
+			   perdía contraste en varias zonas — se oscurece bastante más que un hero
+			   normal, en toda la altura, no solo hacia abajo. Un poco más liviano que la
+			   primera versión para dar más luminosidad al texto general (la cita ya tiene
+			   su propio halo dorado, más marcado, aparte). */
+			background: linear-gradient(
+				180deg,
+				rgba(18, 16, 12, 0.62) 0%,
+				rgba(18, 16, 12, 0.74) 100%
+			);
+		}
+
+		.content-card {
+			margin: var(--space-8) 0 var(--space-12);
+			padding: var(--space-6) var(--space-4);
+			color: var(--color-arena);
+			text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+		}
+
+		.content-card p {
+			text-align: justify;
+		}
+
+		.content-card h1 {
+			color: var(--color-arena);
+			margin-top: var(--space-1);
+		}
+
+		.content-card h2 {
+			color: var(--color-arena);
+		}
+
+		.eyebrow-light {
+			color: var(--color-naranja);
 		}
 
 		.prose h2 {
 			margin-top: var(--space-8);
 		}
 
+		/* Cita destacada: pedido explícito de que resalte más que el resto del texto —
+		   halo dorado radial detrás del ícono/texto, ícono más grande en Naranja (más
+		   luminoso que Oro sobre este fondo oscuro) y tipografía más grande. */
 		.quote-block {
-			margin: var(--space-8) 0;
+			position: relative;
+			margin: var(--space-10) 0;
+			padding: var(--space-6) var(--space-4);
 			text-align: center;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: var(--space-3);
+			gap: var(--space-4);
+		}
+
+		.quote-glow {
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(
+				50% 60% at 50% 35%,
+				rgba(248, 193, 122, 0.28) 0%,
+				rgba(248, 193, 122, 0) 70%
+			);
+			pointer-events: none;
+		}
+
+		.quote-block :global(svg) {
+			position: relative;
+			filter: drop-shadow(0 2px 10px rgba(248, 193, 122, 0.55));
 		}
 
 		blockquote {
+			position: relative;
 			margin: 0;
+			max-width: 42ch;
 			font-family: var(--font-display);
 			font-style: italic;
-			font-size: var(--text-lg);
-			color: var(--color-verde-bosque);
+			font-size: var(--text-xl);
+			line-height: 1.4;
+			color: var(--color-arena);
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+		}
+
+		@media (min-width: 768px) {
+			.content-card {
+				padding: var(--space-12) var(--space-12);
+			}
 		}
 	</style>
 </Layout>

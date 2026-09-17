@@ -83,6 +83,42 @@ Primera versión del sitio (hero solo texto, tarjetas con borde de caja) fue rec
 * **Bug de accesibilidad encontrado y corregido en el proceso:** el tagline del footer (Verde Salvia sobre Verde Botánico) daba 1.92:1 de contraste — muy por debajo de WCAG AA. Se corrigió a Arena con opacidad reducida (5.69:1). Se revisaron también los otros usos de Verde Salvia como fondo y se ajustaron a texto de contraste completo donde el texto era pequeño.
 * **Verificación:** `npm run build` limpio + capturas de pantalla reales con Playwright (mobile 390px y desktop 1440px) en las 4 páginas, no solo curl/HTML.
 
+## Analítica (GA4), SEO social y tracking de eventos (2026-09-17)
+
+Se implementó la capa de medición a partir de un prompt que el usuario trajo de otra fuente (pensado para HTML plano + Tailwind, no para Astro) — se adaptó al stack real:
+
+* **GA4 apagado por defecto:** el script solo se carga si existe `PUBLIC_GA_MEASUREMENT_ID` (ver `Layout.astro`), para no medir tráfico falso en desarrollo/preview. Falta que el usuario cree la propiedad en analytics.google.com y pase el Measurement ID.
+* **CSP actualizada** en `netlify.toml` — sin esto, GA4 quedaba bloqueado en silencio por la política existente (`script-src 'self'` no permitía `googletagmanager.com`).
+* **Meta tags SEO + Open Graph + Twitter Card** agregados a `Layout.astro` (título, descripción, imagen, URL canónica) por página, usando los props `title`/`description` que ya existían más un `image` opcional. Imagen de vista previa (`og-default.jpg`) generada del mockup de recepción del manual, en JPG (más compatible con el crawler de WhatsApp que .webp).
+* **Tracking de eventos por delegación:** un solo listener en `Layout.astro` (no uno por página) clasifica clics reales según el `href`: `click_whatsapp`, `click_instagram`, `click_facebook`, `click_maps`, `click_ver_catalogo`, `click_reservar`. Se descartó trackear "selección de categoría" del catálogo (lo pedía el prompt original) porque esa función no existe en el sitio — no hay filtro por categoría, se listan todas seguidas.
+* **`astro.config.mjs`** con TODO explícito para setear `site: "https://..."` una vez exista dominio — sin esto, `og:url`/canonical caen a `localhost` en el build.
+* Nuevo skill `.claude/skills/naru-analytics/` — audita que la implementación esté bien conectada (variable de entorno, CSP, script) y guía dónde mirar cada métrica en el panel de GA4. No tiene acceso a la API de Google, no lee datos en vivo.
+
+## Checklist: deploy → analítica → QR (2026-09-17)
+
+Orden acordado con el usuario. Cada fase depende de que la anterior esté cerrada.
+
+**Fase 1 — Deploy**
+- [ ] Commit + push del trabajo pendiente a `main` en GitHub (`edzamo/naru-advancedAesthetics`).
+- [ ] Conectar el repo a Netlify (`app.netlify.com/teams/edzamo13`) — "Add new site → Import an existing project → GitHub" → seleccionar el repo.
+- [ ] En la configuración del sitio en Netlify: **Base directory = `site`**, **Build command = `npm run build`**, **Publish directory = `dist`** (relativo al base directory — así lo espera `site/netlify.toml`).
+- [ ] Primer deploy — confirmar que las 4 páginas cargan en la URL que da Netlify (`algo.netlify.app`).
+- [ ] Decidir dominio propio o quedarse con el subdominio gratuito de Netlify por ahora.
+- [ ] Si hay dominio propio: conectarlo en Netlify y actualizar `site` en `astro.config.mjs` con la URL real.
+
+**Fase 2 — Analítica**
+- [ ] Usuario crea la propiedad GA4 en analytics.google.com (instrucciones en el skill `naru-analytics` y en el resumen que se le dio en chat).
+- [ ] Usuario pasa el Measurement ID (`G-XXXXXXXXXX`).
+- [ ] Agregar `PUBLIC_GA_MEASUREMENT_ID` en Netlify (Site settings → Environment variables) y redeploy.
+- [ ] Verificar en GA4 → Tiempo real que una visita de prueba aparece.
+- [ ] Verificar que los eventos (`click_whatsapp`, etc.) aparecen en GA4 → Eventos después de probarlos a mano.
+
+**Fase 3 — QR y links con UTM**
+- [ ] Confirmar destino del QR (Inicio, por defecto acordado) y si va a haber variantes por canal (local / tarjeta / redes).
+- [ ] Generar las URLs con UTM una vez exista dominio final.
+- [ ] Generar las imágenes de QR (uno por canal) listas para imprimir/publicar.
+- [ ] Confirmar en GA4 → Adquisición de tráfico que cada `utm_source` aparece separado.
+
 ## Nota sobre las fotos del catálogo (2026-09-16)
 
 El usuario compartió el catálogo real de 30 servicios y autorizó cubrir las fotos faltantes con imágenes de internet mientras tanto. Se optó por **no** hacerlo así — en su lugar, cada `ServiceCard` muestra un placeholder de marca (gradiente Verde Bosque → Verde Salvia con las iniciales del servicio). Motivo: scrapear fotos sueltas de internet para ~30 tratamientos implica (a) riesgo de derechos de autor en un sitio comercial, y (b) rompe la regla ya documentada en `07-diseno-ui.md` de que el catálogo debe verse como un set fotográfico coherente, no imágenes de estilos/calidades distintas. El placeholder es honesto (no pretende ser una foto real) y queda listo para reemplazarse 1:1 por fotos reales vía el skill `naru-foto` en cuanto estén disponibles.

@@ -1,7 +1,10 @@
 ---
 /**
- * Encabezado estándar de páginas internas (Nosotros, Catálogo): solo título, sin foto
- * y sin bloque de color grande — pegado al nav, mismo tratamiento compacto en ambas páginas.
+ * Encabezado estándar de páginas internas (Catálogo): solo título, sin foto de fondo.
+ * Decisión de UX: en una página de catálogo/listado, el fondo debe ser neutro para que
+ * las tarjetas de tratamientos (y sus fotos reales, cuando existan) sean lo protagonista —
+ * ver docs/04-desarrollo.md. Distinto de Inicio/Nosotros, que sí usan foto de marca porque
+ * ahí el objetivo es transmitir identidad, no facilitar comparación rápida.
  */
 interface Props {
 	eyebrow: string;
