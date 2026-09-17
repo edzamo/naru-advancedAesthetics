@@ -15,6 +15,7 @@ const ogImageUrl = new URL(image, Astro.site ?? Astro.url.origin);
 // GA4 — no se carga nada hasta tener un Measurement ID real configurado.
 // Ver docs/04-desarrollo.md para instrucciones de alta y dónde poner la variable en Netlify.
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const currentYear = new Date().getFullYear();
 
 const navLinks = [
 	{ href: "/", label: "Inicio" },
@@ -122,6 +123,7 @@ const navLinks = [
 			<p>
 				<a href="/contacto">Contacto / WhatsApp</a>
 			</p>
+			<p class="footer-copyright">© {currentYear} Naru Estética Avanzada. Todos los derechos reservados.</p>
 		</footer>
 
 		<!-- Externo (no inline) a propósito: la CSP no permite scripts inline sin
@@ -312,6 +314,16 @@ const navLinks = [
 				font-family: var(--font-heading);
 				font-size: var(--text-sm);
 				text-decoration: none;
+			}
+
+			/* Arena a plena opacidad, no atenuada — el footer ya tuvo un bug de contraste
+			   (Verde Salvia sobre Verde Botánico, 1.92:1) por bajar la opacidad en texto
+			   chico. Acá el tamaño reducido ya alcanza para que se lea como "letra chica"
+			   sin sacrificar legibilidad real. */
+			.footer-copyright {
+				margin: var(--space-4) 0 0;
+				font-size: var(--text-xs);
+				color: var(--color-arena);
 			}
 
 			/* Desktop (>= 768px): nav siempre visible, sin hamburguesa */
