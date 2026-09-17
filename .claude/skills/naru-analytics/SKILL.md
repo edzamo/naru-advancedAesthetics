@@ -7,6 +7,13 @@ description: Audita y explica la configuración de Google Analytics 4 (GA4) del 
 
 GA4 en este sitio se activa solo si existe la variable de entorno `PUBLIC_GA_MEASUREMENT_ID` (ver `site/src/layouts/Layout.astro`). Sin esa variable no se carga ningún script — es intencional, para no medir tráfico falso en desarrollo. Este skill no tiene acceso a la API de Google Analytics (no hay credenciales configuradas); su trabajo es auditar que la implementación en el código esté correcta y guiar al usuario a dónde mirar los datos reales en el panel de GA4.
 
+## Datos de la cuenta (Naru)
+
+- **Cuenta GA4:** `edzamo13` — propiedad "Naru Estética Avanzada".
+- **Measurement ID:** `G-406ZMQ3DVX` (creado 2026-09-17, flujo web apuntando a `https://naru-advanced-aesthetics.netlify.app`).
+- **Acceso directo al admin de la propiedad:** https://analytics.google.com/analytics/web/#/a168163941p0/admin
+- Si hay que crear una propiedad nueva desde cero (otro negocio, otra cuenta): https://analytics.google.com/analytics/web/#/a168163941p0/admin/property/create — mismo flujo documentado en `docs/04-desarrollo.md` (Fase 2 del checklist).
+
 ## Pasos de auditoría
 
 ### 1. Confirmar que el ID está configurado
