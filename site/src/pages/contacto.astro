@@ -65,24 +65,27 @@ const googleReviewsHref = null; // TODO: link directo de reseñas (place id) cua
 			</div>
 
 			<div class="social-block">
-				<p class="social-heading">¿Por dónde prefieres escribirnos?</p>
-				<div class="social-icons">
+				<p class="social-heading">Seguinos</p>
+				<div class="follow-grid">
 					{siteData.instagram && (
-						<a class="social-icon" href={siteData.instagram} target="_blank" rel="noopener">
+						<a class="follow-card" href={siteData.instagram} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.instagram} />
-							<span class="icon-label">Instagram</span>
+							<span class="follow-name">Instagram</span>
+							<span class="follow-promise">Mirá los resultados reales de nuestras clientas</span>
 						</a>
 					)}
 					{siteData.facebook && (
-						<a class="social-icon" href={siteData.facebook} target="_blank" rel="noopener">
+						<a class="follow-card" href={siteData.facebook} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.facebook} />
-							<span class="icon-label">Facebook</span>
+							<span class="follow-name">Facebook</span>
+							<span class="follow-promise">Promociones y novedades del studio</span>
 						</a>
 					)}
 					{googleReviewsHref && (
-						<a class="social-icon" href={googleReviewsHref} target="_blank" rel="noopener">
+						<a class="follow-card" href={googleReviewsHref} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.google} />
-							<span class="icon-label">Reseñas Google</span>
+							<span class="follow-name">Google</span>
+							<span class="follow-promise">Dejanos tu reseña</span>
 						</a>
 					)}
 				</div>
@@ -276,52 +279,73 @@ const googleReviewsHref = null; // TODO: link directo de reseñas (place id) cua
 			margin: 0 auto var(--space-6);
 		}
 
-		.social-icons {
+		/* Tarjetas de "Seguinos": a diferencia de Ubicación/Teléfono/Horario (utilidad,
+		   la persona ya sabe qué quiere), acá hace falta una promesa corta por red para
+		   que dé ganas de hacer clic — ver docs/08-redes-sociales.md. */
+		.follow-grid {
 			display: flex;
-			gap: var(--space-6);
-			align-items: flex-start;
+			gap: var(--space-4);
+			align-items: stretch;
 			justify-content: center;
 			flex-wrap: wrap;
 		}
 
-		.social-icon {
+		.follow-card {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: var(--space-2);
-			width: 96px;
+			width: 180px;
+			padding: var(--space-4) var(--space-3);
+			border-radius: var(--radius);
+			border: 1px solid rgba(243, 240, 232, 0.25);
 			color: var(--color-arena);
 			text-decoration: none;
+			text-align: center;
+			transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 		}
 
 		.icon-circle {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 64px;
-			height: 64px;
+			width: 56px;
+			height: 56px;
 			border-radius: 50%;
 			border: 1px solid var(--color-arena);
 			background: rgba(20, 22, 16, 0.25);
-			transition: background 0.2s ease, transform 0.2s ease;
+			transition: background 0.2s ease;
 		}
 
 		.icon-circle :global(svg) {
-			width: 26px;
-			height: 26px;
+			width: 24px;
+			height: 24px;
 		}
 
-		.social-icon:hover .icon-circle {
-			background: var(--color-arena);
-			color: var(--color-verde-botanico);
+		.follow-card:hover {
+			background: rgba(243, 240, 232, 0.08);
+			border-color: var(--color-arena);
 			transform: translateY(-2px);
 		}
 
-		.icon-label {
+		.follow-card:hover .icon-circle {
+			background: var(--color-arena);
+			color: var(--color-verde-botanico);
+		}
+
+		.follow-name {
 			font-family: var(--font-heading);
-			font-size: var(--text-xs);
+			font-size: var(--text-sm);
+			font-weight: 600;
 			text-transform: uppercase;
 			letter-spacing: var(--tracking-wide);
+		}
+
+		.follow-promise {
+			font-size: var(--text-xs);
+			color: var(--color-arena);
+			opacity: 0.8;
+			line-height: 1.4;
 		}
 
 		@media (min-width: 768px) {
@@ -337,8 +361,8 @@ const googleReviewsHref = null; // TODO: link directo de reseñas (place id) cua
 				grid-template-columns: repeat(3, 1fr);
 			}
 
-			.social-icons {
-				gap: var(--space-8);
+			.follow-grid {
+				gap: var(--space-6);
 			}
 		}
 	</style>

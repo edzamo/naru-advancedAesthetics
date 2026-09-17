@@ -118,10 +118,18 @@ Orden acordado con el usuario. Cada fase depende de que la anterior esté cerrad
 - [ ] Verificar que los eventos (`click_whatsapp`, etc.) aparecen en GA4 → Eventos después de probarlos a mano.
 
 **Fase 3 — QR y links con UTM**
-- [ ] Confirmar destino del QR (Inicio, por defecto acordado) y si va a haber variantes por canal (local / tarjeta / redes).
-- [ ] Generar las URLs con UTM una vez exista dominio final.
-- [ ] Generar las imágenes de QR (uno por canal) listas para imprimir/publicar.
-- [ ] Confirmar en GA4 → Adquisición de tráfico que cada `utm_source` aparece separado.
+- [x] Confirmar destino del QR — **cambiado a Catálogo** (no Inicio): la intención principal de quien escanea es ver tratamientos/precios, no la presentación de marca, y agregar un clic de más reduce cuánta gente llega. Navegación a las demás páginas sigue disponible desde el header.
+- [x] Generar las URLs con UTM — sobre el dominio de Netlify por ahora (`naru-advanced-aesthetics.netlify.app`); **hay que regenerar los QR si más adelante se conecta un dominio propio**, el QR codifica el texto literal de la URL.
+- [x] Generar las imágenes de QR — 4 variantes en `site/public/qr/`, verificadas decodificando cada una (no solo a simple vista):
+  - `qr-local.png` → `utm_source=qr_local&utm_medium=print&utm_campaign=recepcion_manta`
+  - `qr-tarjeta.png` → `utm_source=qr_tarjeta&utm_medium=print&utm_campaign=tarjeta_presentacion`
+  - `qr-instagram.png` → `utm_source=instagram&utm_medium=social&utm_campaign=bio_organic`
+  - `qr-facebook.png` → `utm_source=facebook&utm_medium=social&utm_campaign=bio_organic`
+- [ ] Confirmar en GA4 → Adquisición de tráfico que cada `utm_source` aparece separado (falta escanear cada QR una vez en real para generar los primeros datos).
+
+## Favicon corregido (2026-09-17)
+
+El sitio publicado tenía el ícono por defecto de Astro (`site/public/favicon.svg`/`.ico`, nunca reemplazado desde el scaffolding inicial) — el usuario lo notó en la viñeta de navegación del navegador. Se generó un favicon propio a partir del mismo path de pétalo que usa `FlowerMotif.astro` (flor de 6 pétalos), en Verde Botánico con variante Naranja Cálido para modo oscuro del navegador. Rasterizado a `.ico` multi-resolución (16/32/48/64px) con `rsvg-convert` + Pillow para navegadores sin soporte de SVG favicon.
 
 ## Nota sobre las fotos del catálogo (2026-09-16)
 
