@@ -1,6 +1,5 @@
 ---
 import "../styles/tokens.css";
-import FlowerMotif from "../components/FlowerMotif.astro";
 
 interface Props {
 	title: string;
@@ -67,7 +66,13 @@ const navLinks = [
 	<body>
 		<header class="site-header">
 			<a href="/" class="brand" aria-label="Naru Estética Avanzada">
-				<FlowerMotif size={28} color="var(--color-oro)" class="brand-mark" />
+				<img
+					class="brand-mark"
+					src="/images/brand/flor-oro.webp"
+					alt=""
+					width="28"
+					height="28"
+				/>
 				<img
 					class="brand-wordmark"
 					src="/images/brand/wordmark-arena.webp"
@@ -98,7 +103,13 @@ const navLinks = [
 		</main>
 
 		<footer class="site-footer">
-			<FlowerMotif size={56} color="var(--color-oro)" class="footer-flower" />
+			<img
+				class="footer-flower"
+				src="/images/brand/flor-oro.webp"
+				alt=""
+				width="56"
+				height="56"
+			/>
 			<img
 				class="footer-wordmark"
 				src="/images/brand/wordmark-arena.webp"
