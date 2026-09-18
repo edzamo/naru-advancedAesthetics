@@ -1,0 +1,124 @@
+---
+// Página de uso interno (dueño/personal del local) — NO está en el menú de navegación
+// a propósito: no es contenido para quien visita el sitio, es donde el negocio va a
+// buscar sus propios materiales imprimibles/descargables. Se llega por link directo,
+// no por el header. noindex para que tampoco aparezca en buscadores.
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const codigosQr = [
+	{
+		archivo: "qr-local.png",
+		nombre: "QR para el local",
+		uso: "Imprimir y pegar en recepción — el que escanean las clientas en el mostrador.",
+	},
+	{
+		archivo: "qr-tarjeta.png",
+		nombre: "QR para tarjeta de presentación",
+		uso: "Va en la tarjeta física que se entrega en mano.",
+	},
+	{
+		archivo: "qr-instagram.png",
+		nombre: "QR para Instagram",
+		uso: "Para usar en historias o material que se comparte desde Instagram.",
+	},
+	{
+		archivo: "qr-facebook.png",
+		nombre: "QR para Facebook",
+		uso: "Para usar en publicaciones o material que se comparte desde Facebook.",
+	},
+];
+---
+
+<Layout
+	title="Recursos"
+	description="Materiales internos de Naru Estética Avanzada: códigos QR del catálogo."
+	noindex={true}
+>
+	<PageHero
+		eyebrow="Uso interno"
+		title="Recursos"
+		description="Materiales descargables para el local — no forma parte de la navegación del sitio."
+	/>
+
+	<div class="container">
+		<section class="recurso-seccion">
+			<h2>Códigos QR del catálogo</h2>
+			<p class="seccion-intro">
+				Los 4 apuntan siempre a la página de Catálogo. La URL no cambia con cada actualización del
+				sitio, así que un QR ya impreso no se vuelve obsoleto.
+			</p>
+			<div class="qr-grid">
+				{codigosQr.map((qr) => (
+					<article class="qr-card">
+						<img src={`/qr/${qr.archivo}`} alt={`Código QR — ${qr.nombre}`} width="160" height="160" loading="lazy" />
+						<div class="qr-body">
+							<h3>{qr.nombre}</h3>
+							<p>{qr.uso}</p>
+							<a class="qr-download" href={`/qr/${qr.archivo}`} download>
+								Descargar →
+							</a>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+
+	<style>
+		.recurso-seccion {
+			padding: var(--space-4) 0 var(--space-12);
+		}
+
+		.seccion-intro {
+			color: var(--color-text-muted);
+			max-width: 60ch;
+		}
+
+		.qr-grid {
+			display: grid;
+			gap: var(--space-6);
+			margin-top: var(--space-6);
+		}
+
+		.qr-card {
+			display: flex;
+			align-items: center;
+			gap: var(--space-4);
+			padding-bottom: var(--space-4);
+			border-bottom: 1px solid rgba(39, 75, 26, 0.15);
+		}
+
+		.qr-card img {
+			flex-shrink: 0;
+			width: 96px;
+			height: 96px;
+			border-radius: var(--radius);
+		}
+
+		.qr-body h3 {
+			font-size: var(--text-base);
+			margin: 0 0 var(--space-1);
+		}
+
+		.qr-body p {
+			margin: 0 0 var(--space-2);
+			font-size: var(--text-sm);
+			color: var(--color-text-muted);
+		}
+
+		.qr-download {
+			font-family: var(--font-heading);
+			font-size: var(--text-sm);
+			font-weight: 600;
+			text-decoration: none;
+			color: var(--color-accent);
+		}
+
+		@media (min-width: 640px) {
+			.qr-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+	</style>
+</Layout>

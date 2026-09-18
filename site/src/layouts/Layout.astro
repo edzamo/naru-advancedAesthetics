@@ -5,9 +5,10 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	noindex?: boolean;
 }
 
-const { title, description, image = "/images/og-default.jpg" } = Astro.props;
+const { title, description, image = "/images/og-default.jpg", noindex = false } = Astro.props;
 const fullTitle = `${title} · Naru Estética Avanzada`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const ogImageUrl = new URL(image, Astro.site ?? Astro.url.origin);
@@ -34,6 +35,7 @@ const navLinks = [
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalUrl} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<!-- Open Graph (vista previa al compartir por WhatsApp/Instagram/Facebook) -->
 		<meta property="og:type" content="website" />
