@@ -1,10 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FlowerMotif from "../components/FlowerMotif.astro";
-import ServiceCard from "../components/ServiceCard.astro";
-import servicesData from "../data/services.json";
-
-const destacados = servicesData.servicios.filter((s: any) => s.destacado && s.activo).slice(0, 3);
+import siteData from "../data/site.json";
 
 const porQueElegirnos = [
 	{ titulo: "Tecnología moderna", texto: "Equipos y técnicas actualizadas, no lo de siempre." },
@@ -33,20 +30,22 @@ const porQueElegirnos = [
 		</div>
 	</section>
 
-	<section class="container section">
-		<p class="eyebrow">Destacados</p>
-		<h2>Lo más pedido</h2>
-		{
-			destacados.length > 0 ? (
-				<div class="grid grid-3">
-					{destacados.map((s: any) => (
-						<ServiceCard nombre={s.nombre} precio={s.precio} moneda={s.moneda} descripcion={s.descripcion} />
-					))}
-				</div>
-			) : (
-				<p class="placeholder">Catálogo en construcción — muy pronto vas a ver nuestros tratamientos acá.</p>
-			)
-		}
+	<section class="apertura">
+		<div class="container apertura-content">
+			<FlowerMotif size={120} color="var(--color-oro)" opacity={0.35} />
+			<p class="eyebrow eyebrow-light">Muy pronto</p>
+			<h2>Nos inauguramos</h2>
+			<p class="apertura-fecha">{siteData.fecha_apertura_display}</p>
+			<p class="apertura-texto">
+				Estamos preparando todo para abrir las puertas de Naru en Manta. Acá vas a ver las
+				fotos reales de la apertura y los primeros resultados de nuestras clientas.
+			</p>
+			{siteData.instagram && (
+				<a class="link-underline" href={siteData.instagram} target="_blank" rel="noopener">
+					Seguinos para las novedades →
+				</a>
+			)}
+		</div>
 	</section>
 
 	<section class="por-que">
@@ -191,15 +190,77 @@ const porQueElegirnos = [
 			margin-top: var(--space-1);
 		}
 
-		.grid {
-			display: grid;
-			gap: var(--space-6);
-			margin-top: var(--space-6);
+		/* Banner de apertura — reemplaza a "Destacados" mientras el local no abrió (2026-09-18):
+		   antes de la inauguración no hay prueba social real que mostrar ("lo más pedido"
+		   sería falso), así que en vez de ocultar la sección se usa el mismo hueco para
+		   anunciar la fecha. Mismo tratamiento oscuro + glow cálido que .ubicacion (abajo),
+		   pero centrado y con la flor grande como foco — es la sección que más quiere llamar
+		   la atención de toda la home. fecha_apertura_display en site.json: confirmar la
+		   fecha real antes de publicar, hoy es un valor de ejemplo. */
+		.apertura {
+			position: relative;
+			overflow: hidden;
+			background:
+				radial-gradient(60% 90% at 50% 0%, rgba(194, 115, 68, 0.35) 0%, rgba(194, 115, 68, 0) 70%),
+				var(--color-verde-botanico);
+			color: var(--color-arena);
+			text-align: center;
+			padding: var(--space-12) 0;
 		}
 
-		.placeholder {
-			color: var(--color-text-muted);
-			font-style: italic;
+		.apertura-content {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: var(--space-2);
+		}
+
+		.apertura-content :global(svg) {
+			position: absolute;
+			top: -30px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 0;
+		}
+
+		.apertura h2,
+		.apertura-fecha,
+		.apertura-texto,
+		.apertura .link-underline {
+			position: relative;
+			z-index: 1;
+		}
+
+		.apertura h2 {
+			color: var(--color-arena);
+			margin: var(--space-2) 0 0;
+		}
+
+		.apertura-fecha {
+			font-family: var(--font-display);
+			font-size: var(--text-2xl);
+			/* --color-oro, no --color-naranja: el manual reserva Naranja solo para fondo de
+			   bloques destacados, nunca texto (ver tokens.css) — Oro sí está documentado
+			   para "títulos grandes". */
+			color: var(--color-oro);
+			margin: 0;
+		}
+
+		.apertura-texto {
+			max-width: 46ch;
+			color: var(--color-arena);
+			opacity: 0.85;
+			margin: 0;
+		}
+
+		/* Selector con más especificidad que .link-underline (definida más abajo) a propósito
+		   — si no, el orden de aparición en el archivo haría ganar el color por defecto
+		   (Terracota) en vez de este, sobre el fondo oscuro. */
+		.apertura .link-underline {
+			color: var(--color-arena);
+			border-bottom-color: var(--color-arena);
+			margin-top: var(--space-2);
 		}
 
 		.por-que {
