@@ -23,69 +23,70 @@ const googleReviewsHref = null; // TODO: link directo de reseñas (place id) cua
 
 <Layout
 	title="Contacto"
+	titleEn="Contact"
 	description="Visita Naru Estética Avanzada en Manta, Ecuador — contáctanos por WhatsApp o redes sociales."
 >
 	<section class="contact-hero">
 		<div class="contact-hero-content">
-			<p class="escribenos">Escríbenos</p>
-			<h1>Contacto</h1>
-			<p class="eyebrow eyebrow-light">Estamos para ayudarte</p>
+			<p class="escribenos" data-i18n-en="Write to us">Escríbenos</p>
+			<h1 data-i18n-en="Contact">Contacto</h1>
+			<p class="eyebrow eyebrow-light" data-i18n-en="We're here to help">Estamos para ayudarte</p>
 
 			<div class="info-grid">
 				<div class="info-block">
-					<p class="eyebrow">Ubicación</p>
+					<p class="eyebrow" data-i18n-en="Location">Ubicación</p>
 					<p class="info-value">{siteData.direccion || "Manta, Ecuador"}</p>
 					{siteData.google_maps_link && (
 						<a class="info-action" href={siteData.google_maps_link} target="_blank" rel="noopener">
 							<span class="icon-circle icon-circle-sm icon-mappin" set:html={ICONS.mapPin} />
-							<span class="direccion-hint">Ubicación Google Maps</span>
+							<span class="direccion-hint" data-i18n-en="Google Maps location">Ubicación Google Maps</span>
 						</a>
 					)}
 				</div>
 
 				<div class="info-block">
-					<p class="eyebrow">Teléfono</p>
+					<p class="eyebrow" data-i18n-en="Phone">Teléfono</p>
 					<p class="info-value">{siteData.telefono_display}</p>
 					{whatsappHref && (
 						<a class="info-action" href={whatsappHref} target="_blank" rel="noopener">
 							<span class="icon-circle icon-circle-sm icon-whatsapp" set:html={ICONS.whatsapp} />
-							<span class="direccion-hint">Escribir por WhatsApp</span>
+							<span class="direccion-hint" data-i18n-en="Message on WhatsApp">Escribir por WhatsApp</span>
 						</a>
 					)}
 				</div>
 
 				<div class="info-block">
-					<p class="eyebrow">Horario</p>
-					<p class="info-value">{siteData.horario || "Próximamente."}</p>
+					<p class="eyebrow" data-i18n-en="Hours">Horario</p>
+					<p class="info-value" data-i18n-en={siteData.horario_en || "Coming soon."}>{siteData.horario || "Próximamente."}</p>
 					<div class="info-static">
 						<span class="icon-circle icon-circle-sm icon-horario" set:html={ICONS.calendar} />
-						<span class="direccion-hint">Horario de atención</span>
+						<span class="direccion-hint" data-i18n-en="Business hours">Horario de atención</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="social-block">
-				<p class="social-heading">Seguinos</p>
+				<p class="social-heading" data-i18n-en="Follow us">Seguinos</p>
 				<div class="follow-grid">
 					{siteData.instagram && (
 						<a class="follow-card" href={siteData.instagram} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.instagram} />
 							<span class="follow-name">Instagram</span>
-							<span class="follow-promise">Mirá los resultados reales de nuestras clientas</span>
+							<span class="follow-promise" data-i18n-en="See our clients' real results">Mirá los resultados reales de nuestras clientas</span>
 						</a>
 					)}
 					{siteData.facebook && (
 						<a class="follow-card" href={siteData.facebook} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.facebook} />
 							<span class="follow-name">Facebook</span>
-							<span class="follow-promise">Promociones y novedades del studio</span>
+							<span class="follow-promise" data-i18n-en="Promotions and studio news">Promociones y novedades del studio</span>
 						</a>
 					)}
 					{googleReviewsHref && (
 						<a class="follow-card" href={googleReviewsHref} target="_blank" rel="noopener">
 							<span class="icon-circle" set:html={ICONS.google} />
 							<span class="follow-name">Google</span>
-							<span class="follow-promise">Dejanos tu reseña</span>
+							<span class="follow-promise" data-i18n-en="Leave us a review">Dejanos tu reseña</span>
 						</a>
 					)}
 				</div>

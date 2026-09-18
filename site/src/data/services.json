@@ -2,23 +2,28 @@
   "categorias": [
     {
       "id": "micropigmentacion",
-      "nombre": "Micropigmentación"
+      "nombre": "Micropigmentación",
+      "nombre_en": "Micropigmentation"
     },
     {
       "id": "cejas",
-      "nombre": "Cejas"
+      "nombre": "Cejas",
+      "nombre_en": "Eyebrows"
     },
     {
       "id": "pestanas",
-      "nombre": "Pestañas"
+      "nombre": "Pestañas",
+      "nombre_en": "Eyelashes"
     },
     {
       "id": "facial",
-      "nombre": "Tratamientos Faciales"
+      "nombre": "Tratamientos Faciales",
+      "nombre_en": "Facial Treatments"
     },
     {
       "id": "estetica-laser",
-      "nombre": "Estética Láser"
+      "nombre": "Estética Láser",
+      "nombre_en": "Laser Aesthetics"
     }
   ],
 
@@ -26,11 +31,13 @@
     {
       "id": "ombre-brows",
       "nombre": "Cejas Efecto Polvo / Ombré Brows",
+      "nombre_en": "Powder Brows / Ombré Brows",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Micropigmentación de cejas con efecto sombreado y degradado para lograr mayor definición y armonía.",
+      "descripcion_en": "Eyebrow micropigmentation with a shaded, gradient effect for greater definition and harmony.",
       "imagen": "ombre-brows.webp",
       "destacado": true,
       "activo": true
@@ -38,11 +45,13 @@
     {
       "id": "power-brows",
       "nombre": "Power Brows",
+      "nombre_en": "Power Brows",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Técnica de micropigmentación con un efecto más definido e intenso para resaltar la forma de las cejas.",
+      "descripcion_en": "Micropigmentation technique with a bolder, more intense effect to enhance eyebrow shape.",
       "imagen": "power-brows.webp",
       "destacado": false,
       "activo": true
@@ -50,11 +59,13 @@
     {
       "id": "microblading",
       "nombre": "Microblading",
+      "nombre_en": "Microblading",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Técnica pelo a pelo diseñada para conseguir unas cejas naturales, definidas y armoniosas.",
+      "descripcion_en": "Hair-stroke technique designed to achieve natural, defined and harmonious eyebrows.",
       "imagen": "microblading.webp",
       "destacado": false,
       "activo": true
@@ -62,11 +73,13 @@
     {
       "id": "microshading",
       "nombre": "Microshading",
+      "nombre_en": "Microshading",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Técnica mixta que combina trazos pelo a pelo con sombreado para conseguir mayor definición y densidad.",
+      "descripcion_en": "Mixed technique combining hair strokes with shading for greater definition and density.",
       "imagen": "microshading.webp",
       "destacado": false,
       "activo": true
@@ -74,11 +87,13 @@
     {
       "id": "micropigmentacion-labios",
       "nombre": "Micropigmentación de Labios",
+      "nombre_en": "Lip Micropigmentation",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Procedimiento que realza el tono y definición de los labios para conseguir un resultado armonioso y natural.",
+      "descripcion_en": "Procedure that enhances lip tone and definition for a natural, harmonious result.",
       "imagen": "micropigmentacion-labios.webp",
       "destacado": true,
       "activo": true
@@ -86,11 +101,13 @@
     {
       "id": "neutralizacion-labios",
       "nombre": "Neutralización de Labios",
+      "nombre_en": "Lip Neutralization",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Técnica orientada a equilibrar tonos oscuros o irregulares antes de alcanzar el color deseado.",
+      "descripcion_en": "Technique aimed at balancing dark or uneven tones before achieving the desired color.",
       "imagen": "neutralizacion-labios.webp",
       "destacado": false,
       "activo": true
@@ -98,11 +115,13 @@
     {
       "id": "retoque-cejas",
       "nombre": "Retoque de Micropigmentación de Cejas",
+      "nombre_en": "Eyebrow Micropigmentation Touch-Up",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Sesión de retoque para reforzar pigmento, definición y uniformidad del resultado.",
+      "descripcion_en": "Touch-up session to reinforce pigment, definition and evenness of the result.",
       "imagen": "retoque-cejas.webp",
       "destacado": false,
       "activo": true
@@ -110,24 +129,27 @@
     {
       "id": "retoque-labios",
       "nombre": "Retoque de Micropigmentación de Labios",
+      "nombre_en": "Lip Micropigmentation Touch-Up",
       "categoria": "micropigmentacion",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Sesión complementaria para reforzar el tono y uniformidad de la micropigmentación labial.",
+      "descripcion_en": "Complementary session to reinforce the tone and evenness of lip micropigmentation.",
       "imagen": "retoque-labios.webp",
       "destacado": false,
       "activo": true
     },
-
     {
       "id": "diseno-cejas",
       "nombre": "Diseño de Cejas",
+      "nombre_en": "Eyebrow Design",
       "categoria": "cejas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Diseño personalizado de acuerdo con las facciones y forma natural de las cejas.",
+      "descripcion_en": "Personalized design based on your features and the natural shape of your eyebrows.",
       "imagen": "diseno-cejas.webp",
       "destacado": false,
       "activo": true
@@ -135,11 +157,13 @@
     {
       "id": "depilacion-cejas-cera",
       "nombre": "Depilación de Cejas con Cera",
+      "nombre_en": "Eyebrow Waxing",
       "categoria": "cejas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Definición y limpieza del contorno de las cejas mediante depilación con cera.",
+      "descripcion_en": "Definition and clean-up of the eyebrow contour through waxing.",
       "imagen": "depilacion-cejas-cera.webp",
       "destacado": false,
       "activo": true
@@ -147,11 +171,13 @@
     {
       "id": "henna-cejas",
       "nombre": "Henna para Cejas",
+      "nombre_en": "Eyebrow Henna",
       "categoria": "cejas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Coloración temporal para aportar definición visual y mejorar la apariencia de las cejas.",
+      "descripcion_en": "Temporary tint to add visual definition and improve the appearance of the eyebrows.",
       "imagen": "henna-cejas.webp",
       "destacado": false,
       "activo": true
@@ -159,24 +185,27 @@
     {
       "id": "laminado-cejas",
       "nombre": "Laminado de Cejas",
+      "nombre_en": "Brow Lamination",
       "categoria": "cejas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento para ordenar, moldear y realzar visualmente el volumen natural de las cejas.",
+      "descripcion_en": "Treatment to smooth, shape and visually enhance the natural volume of the eyebrows.",
       "imagen": "laminado-cejas.webp",
       "destacado": true,
       "activo": true
     },
-
     {
       "id": "pestanas-clasicas",
       "nombre": "Pestañas Clásicas",
+      "nombre_en": "Classic Lashes",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Extensiones pelo a pelo para conseguir un acabado natural, ligero y elegante.",
+      "descripcion_en": "Hair-by-hair extensions for a natural, light and elegant finish.",
       "imagen": "pestanas-clasicas.webp",
       "destacado": false,
       "activo": true
@@ -184,11 +213,13 @@
     {
       "id": "pestanas-hibridas",
       "nombre": "Pestañas Híbridas",
+      "nombre_en": "Hybrid Lashes",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Combinación de técnicas para conseguir mayor densidad manteniendo un resultado equilibrado.",
+      "descripcion_en": "Combination of techniques for greater density while keeping a balanced result.",
       "imagen": "pestanas-hibridas.webp",
       "destacado": true,
       "activo": true
@@ -196,11 +227,13 @@
     {
       "id": "efecto-rimel",
       "nombre": "Efecto Rímel",
+      "nombre_en": "Mascara Effect",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Diseño de pestañas con mayor definición e intensidad, inspirado en el acabado del rímel.",
+      "descripcion_en": "Lash design with greater definition and intensity, inspired by the look of mascara.",
       "imagen": "efecto-rimel.webp",
       "destacado": false,
       "activo": true
@@ -208,11 +241,13 @@
     {
       "id": "efecto-wispy",
       "nombre": "Efecto Wispy",
+      "nombre_en": "Wispy Effect",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Diseño con diferentes longitudes que crea un efecto texturizado, ligero y moderno.",
+      "descripcion_en": "Design with mixed lengths that creates a textured, light and modern effect.",
       "imagen": "efecto-wispy.webp",
       "destacado": false,
       "activo": true
@@ -220,11 +255,13 @@
     {
       "id": "volumen-tecnologico",
       "nombre": "Volumen Tecnológico",
+      "nombre_en": "Technological Volume",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Técnica diseñada para aportar mayor volumen y densidad manteniendo ligereza.",
+      "descripcion_en": "Technique designed to add greater volume and density while keeping a lightweight feel.",
       "imagen": "volumen-tecnologico.webp",
       "destacado": false,
       "activo": true
@@ -232,24 +269,27 @@
     {
       "id": "lifting-pestanas",
       "nombre": "Lifting de Pestañas",
+      "nombre_en": "Lash Lift",
       "categoria": "pestanas",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Realza la curvatura de las pestañas naturales para conseguir una mirada más abierta y definida.",
+      "descripcion_en": "Enhances the curl of natural lashes for a more open, defined look.",
       "imagen": "lifting-pestanas.webp",
       "destacado": true,
       "activo": true
     },
-
     {
       "id": "limpieza-facial-profunda",
       "nombre": "Limpieza Facial Profunda",
+      "nombre_en": "Deep Facial Cleansing",
       "categoria": "facial",
       "precio": null,
       "moneda": "USD",
       "duracion_min": 60,
       "descripcion": "Protocolo de limpieza profunda para retirar impurezas y mejorar la apariencia y textura de la piel.",
+      "descripcion_en": "Deep cleansing protocol to remove impurities and improve the skin's appearance and texture.",
       "imagen": "limpieza-facial-profunda.webp",
       "destacado": true,
       "activo": true
@@ -257,11 +297,13 @@
     {
       "id": "limpieza-facial-express",
       "nombre": "Limpieza Facial Express",
+      "nombre_en": "Express Facial Cleansing",
       "categoria": "facial",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Limpieza facial rápida para mantener la piel fresca, limpia y cuidada.",
+      "descripcion_en": "Quick facial cleansing to keep the skin fresh, clean and cared for.",
       "imagen": "limpieza-facial-express.webp",
       "destacado": false,
       "activo": true
@@ -269,11 +311,13 @@
     {
       "id": "hidratacion-facial",
       "nombre": "Hidratación Facial",
+      "nombre_en": "Facial Hydration",
       "categoria": "facial",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento enfocado en aportar hidratación y mejorar la suavidad y luminosidad de la piel.",
+      "descripcion_en": "Treatment focused on providing hydration and improving the skin's softness and glow.",
       "imagen": "hidratacion-facial.webp",
       "destacado": false,
       "activo": true
@@ -281,11 +325,13 @@
     {
       "id": "peeling-quimico",
       "nombre": "Peeling Químico",
+      "nombre_en": "Chemical Peel",
       "categoria": "facial",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Renovación química superficial seleccionada según las características y necesidades de la piel.",
+      "descripcion_en": "Superficial chemical renewal selected according to the skin's characteristics and needs.",
       "imagen": "peeling-quimico.webp",
       "destacado": false,
       "activo": true
@@ -293,24 +339,27 @@
     {
       "id": "dermaplaning",
       "nombre": "Dermaplaning",
+      "nombre_en": "Dermaplaning",
       "categoria": "facial",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Exfoliación superficial que retira células muertas y vello fino para mejorar la suavidad y luminosidad.",
+      "descripcion_en": "Superficial exfoliation that removes dead skin cells and fine hair to improve softness and glow.",
       "imagen": "dermaplaning.webp",
       "destacado": false,
       "activo": true
     },
-
     {
       "id": "naru-smooth",
       "nombre": "NARU Smooth - Tratamiento de Estrías",
+      "nombre_en": "NARU Smooth - Stretch Mark Treatment",
       "categoria": "estetica-laser",
       "precio": 25,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento con láser CO₂ fraccionado enfocado en mejorar progresivamente la apariencia y textura de la piel con estrías.",
+      "descripcion_en": "Fractional CO₂ laser treatment focused on progressively improving the appearance and texture of skin with stretch marks.",
       "imagen": "naru-smooth-estrias.webp",
       "destacado": true,
       "activo": true
@@ -318,11 +367,13 @@
     {
       "id": "laser-manchas-pigmentacion",
       "nombre": "Tratamiento de Manchas y Pigmentación",
+      "nombre_en": "Dark Spots & Pigmentation Treatment",
       "categoria": "estetica-laser",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento con láser CO₂ fraccionado orientado a mejorar la apariencia de manchas y la uniformidad visual de la piel.",
+      "descripcion_en": "Fractional CO₂ laser treatment aimed at improving the appearance of dark spots and skin tone evenness.",
       "imagen": "laser-manchas-pigmentacion.webp",
       "destacado": true,
       "activo": true
@@ -330,11 +381,13 @@
     {
       "id": "laser-cicatrices-acne",
       "nombre": "Tratamiento de Cicatrices de Acné",
+      "nombre_en": "Acne Scar Treatment",
       "categoria": "estetica-laser",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento con láser CO₂ fraccionado orientado a mejorar progresivamente la textura y apariencia de cicatrices de acné.",
+      "descripcion_en": "Fractional CO₂ laser treatment aimed at progressively improving the texture and appearance of acne scars.",
       "imagen": "laser-cicatrices-acne.webp",
       "destacado": true,
       "activo": true
@@ -342,11 +395,13 @@
     {
       "id": "laser-poros-textura",
       "nombre": "Tratamiento de Poros y Textura",
+      "nombre_en": "Pores & Texture Treatment",
       "categoria": "estetica-laser",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento orientado a mejorar visualmente la textura irregular y la apariencia de poros dilatados.",
+      "descripcion_en": "Treatment aimed at visually improving irregular texture and the appearance of enlarged pores.",
       "imagen": "laser-poros-textura.webp",
       "destacado": false,
       "activo": true
@@ -354,11 +409,13 @@
     {
       "id": "laser-lineas-finas",
       "nombre": "Tratamiento de Líneas Finas",
+      "nombre_en": "Fine Lines Treatment",
       "categoria": "estetica-laser",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Tratamiento con láser fraccionado orientado a favorecer la renovación cutánea y mejorar la apariencia de líneas finas.",
+      "descripcion_en": "Fractional laser treatment aimed at supporting skin renewal and improving the appearance of fine lines.",
       "imagen": "laser-lineas-finas.webp",
       "destacado": false,
       "activo": true
@@ -366,11 +423,13 @@
     {
       "id": "rejuvenecimiento-laser",
       "nombre": "Rejuvenecimiento Facial",
+      "nombre_en": "Facial Rejuvenation",
       "categoria": "estetica-laser",
       "precio": null,
       "moneda": "USD",
       "duracion_min": null,
       "descripcion": "Protocolo de renovación cutánea con láser fraccionado enfocado en mejorar textura y apariencia general de la piel.",
+      "descripcion_en": "Skin renewal protocol with fractional laser focused on improving the overall texture and appearance of the skin.",
       "imagen": "rejuvenecimiento-laser.webp",
       "destacado": false,
       "activo": true

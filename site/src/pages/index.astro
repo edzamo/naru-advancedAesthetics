@@ -4,28 +4,52 @@ import FlowerMotif from "../components/FlowerMotif.astro";
 import siteData from "../data/site.json";
 
 const porQueElegirnos = [
-	{ titulo: "Tecnología moderna", texto: "Equipos y técnicas actualizadas, no lo de siempre." },
-	{ titulo: "Atención personalizada", texto: "Cada clienta importa desde que entra hasta que sale." },
-	{ titulo: "Ambiente cuidado", texto: "Un espacio pensado con intención, en cada detalle." },
-	{ titulo: "Precio justo", texto: "Calidad real, sin pagar de más ni resignar resultados." },
+	{
+		titulo: "Tecnología moderna",
+		tituloEn: "Modern technology",
+		texto: "Equipos y técnicas actualizadas, no lo de siempre.",
+		textoEn: "Up-to-date equipment and techniques, not the usual routine.",
+	},
+	{
+		titulo: "Atención personalizada",
+		tituloEn: "Personalized attention",
+		texto: "Cada clienta importa desde que entra hasta que sale.",
+		textoEn: "Every client matters from the moment she walks in until she leaves.",
+	},
+	{
+		titulo: "Ambiente cuidado",
+		tituloEn: "A carefully designed space",
+		texto: "Un espacio pensado con intención, en cada detalle.",
+		textoEn: "A space designed with intention, down to every detail.",
+	},
+	{
+		titulo: "Precio justo",
+		tituloEn: "Fair pricing",
+		texto: "Calidad real, sin pagar de más ni resignar resultados.",
+		textoEn: "Real quality, without overpaying or settling for less.",
+	},
 ];
 ---
 
 <Layout
 	title="Inicio"
+	titleEn="Home"
 	description="Naru Estética Avanzada — calidad real, tecnología moderna y atención personalizada en Manta, Ecuador."
 >
 	<section class="hero">
 		<div class="hero-content">
 			<p class="eyebrow eyebrow-light">Manta, Ecuador</p>
-			<h1>Belleza real.<br />Precio justo.</h1>
-			<p class="hero-sub">
+			<h1>
+				<span data-i18n-en="Real beauty.">Belleza real.</span><br />
+				<span data-i18n-en="Fair prices.">Precio justo.</span>
+			</h1>
+			<p class="hero-sub" data-i18n-en="The middle ground that was always missing: quality, warmth and a price that respects the people who choose us.">
 				El punto medio que siempre faltó: calidad, calidez y un precio que respeta a quien
 				nos elige.
 			</p>
 			<div class="hero-actions">
-				<a class="btn btn-solid" href="/catalogo">Ver catálogo</a>
-				<a class="btn btn-outline" href="/contacto">Reservar</a>
+				<a class="btn btn-solid" href="/catalogo" data-i18n-en="View catalog">Ver catálogo</a>
+				<a class="btn btn-outline" href="/contacto" data-i18n-en="Book now">Reservar</a>
 			</div>
 		</div>
 	</section>
@@ -33,15 +57,15 @@ const porQueElegirnos = [
 	<section class="apertura">
 		<div class="container apertura-content">
 			<FlowerMotif size={120} color="var(--color-oro)" opacity={0.35} />
-			<p class="eyebrow eyebrow-light">Muy pronto</p>
-			<h2>Nos inauguramos</h2>
-			<p class="apertura-fecha">{siteData.fecha_apertura_display}</p>
-			<p class="apertura-texto">
+			<p class="eyebrow eyebrow-light" data-i18n-en="Coming soon">Muy pronto</p>
+			<h2 data-i18n-en="We're opening soon">Nos inauguramos</h2>
+			<p class="apertura-fecha" data-i18n-en={siteData.fecha_apertura_display_en}>{siteData.fecha_apertura_display}</p>
+			<p class="apertura-texto" data-i18n-en="We're getting everything ready to open Naru's doors in Manta. Here you'll see real photos from opening day and our clients' first results.">
 				Estamos preparando todo para abrir las puertas de Naru en Manta. Acá vas a ver las
 				fotos reales de la apertura y los primeros resultados de nuestras clientas.
 			</p>
 			{siteData.instagram && (
-				<a class="link-underline" href={siteData.instagram} target="_blank" rel="noopener">
+				<a class="link-underline" href={siteData.instagram} target="_blank" rel="noopener" data-i18n-en="Follow us for updates →">
 					Seguinos para las novedades →
 				</a>
 			)}
@@ -50,16 +74,16 @@ const porQueElegirnos = [
 
 	<section class="por-que">
 		<div class="container">
-			<p class="eyebrow">Por qué elegirnos</p>
-			<h2>Naru en cuatro palabras</h2>
+			<p class="eyebrow" data-i18n-en="Why choose us">Por qué elegirnos</p>
+			<h2 data-i18n-en="Naru in four words">Naru en cuatro palabras</h2>
 			<ul class="reasons">
 				{
 					porQueElegirnos.map((item) => (
 						<li>
 							<FlowerMotif size={32} color="var(--color-oro)" />
 							<div>
-								<strong>{item.titulo}</strong>
-								<span>{item.texto}</span>
+								<strong data-i18n-en={item.tituloEn}>{item.titulo}</strong>
+								<span data-i18n-en={item.textoEn}>{item.texto}</span>
 							</div>
 						</li>
 					))
@@ -71,19 +95,19 @@ const porQueElegirnos = [
 	<section class="container section nosotros-extracto">
 		<div class="quote-block">
 			<FlowerMotif size={64} color="var(--color-oro)" opacity={0.7} />
-			<blockquote>
+			<blockquote data-i18n-en={'"I wanted a place to be proud of. One clients would remember not just for the result, but for how it made them feel."'}>
 				"Quería un lugar del que estar orgullosa. Uno que las clientas recuerden no solo
 				por el resultado, sino por cómo las hicieron sentir."
 			</blockquote>
-			<a class="link-underline" href="/nosotros">Conocer nuestra historia →</a>
+			<a class="link-underline" href="/nosotros" data-i18n-en="Learn our story →">Conocer nuestra historia →</a>
 		</div>
 	</section>
 
 	<section class="ubicacion">
 		<div class="container">
-			<h2>Visítanos</h2>
+			<h2 data-i18n-en="Visit us">Visítanos</h2>
 			<p>Manta, Ecuador</p>
-			<a class="btn btn-solid" href="/contacto">Cómo llegar / Contacto</a>
+			<a class="btn btn-solid" href="/contacto" data-i18n-en="Directions / Contact">Cómo llegar / Contacto</a>
 		</div>
 	</section>
 

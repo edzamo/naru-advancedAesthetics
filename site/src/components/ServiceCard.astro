@@ -4,12 +4,14 @@ import FlowerMotif from "./FlowerMotif.astro";
 
 interface Props {
 	nombre: string;
+	nombreEn?: string;
 	precio: number | null;
 	moneda: string;
 	descripcion: string;
+	descripcionEn?: string;
 }
 
-const { nombre, precio, moneda, descripcion } = Astro.props;
+const { nombre, nombreEn, precio, moneda, descripcion, descripcionEn } = Astro.props;
 ---
 
 <article class="service-card">
@@ -17,8 +19,8 @@ const { nombre, precio, moneda, descripcion } = Astro.props;
 		<FlowerMotif size={72} color="var(--color-arena)" opacity={0.55} />
 	</div>
 	<div class="service-body">
-		<h3>{nombre}</h3>
-		<p class="descripcion">{descripcion}</p>
+		<h3 data-i18n-en={nombreEn}>{nombre}</h3>
+		<p class="descripcion" data-i18n-en={descripcionEn}>{descripcion}</p>
 		{precio !== null && precio !== undefined && <p class="precio">{formatPrecio(precio, moneda)}</p>}
 	</div>
 </article>

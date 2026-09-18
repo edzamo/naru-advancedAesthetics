@@ -26,3 +26,6 @@ yarn-error.log*
 
 # Imágenes originales pesadas (solo entran al repo ya optimizadas en public/images/servicios/)
 **/raw-fotos/
+
+# Notas internas / planes de trabajo — no son parte del sitio, no se suben
+notas/
