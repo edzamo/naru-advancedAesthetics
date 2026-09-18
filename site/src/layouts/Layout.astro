@@ -3,13 +3,15 @@ import "../styles/tokens.css";
 
 interface Props {
 	title: string;
+	titleEn?: string;
 	description: string;
 	image?: string;
 	noindex?: boolean;
 }
 
-const { title, description, image = "/images/og-default.jpg", noindex = false } = Astro.props;
+const { title, titleEn, description, image = "/images/og-default.jpg", noindex = false } = Astro.props;
 const fullTitle = `${title} · Naru Estética Avanzada`;
+const fullTitleEn = titleEn ? `${titleEn} · Naru Advanced Aesthetics` : null;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const ogImageUrl = new URL(image, Astro.site ?? Astro.url.origin);
 
@@ -19,10 +21,10 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-	{ href: "/", label: "Inicio" },
-	{ href: "/nosotros", label: "Nosotros" },
-	{ href: "/catalogo", label: "Catálogo" },
-	{ href: "/contacto", label: "Contacto" },
+	{ href: "/", label: "Inicio", labelEn: "Home" },
+	{ href: "/nosotros", label: "Nosotros", labelEn: "About" },
+	{ href: "/catalogo", label: "Catálogo", labelEn: "Catalog" },
+	{ href: "/contacto", label: "Contacto", labelEn: "Contact" },
 ];
 ---
 
@@ -32,7 +34,7 @@ const navLinks = [
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{fullTitle}</title>
+		<title data-i18n-en={fullTitleEn ?? undefined}>{fullTitle}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalUrl} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -84,21 +86,31 @@ const navLinks = [
 					height="77"
 				/>
 			</a>
-			<input type="checkbox" id="nav-toggle" class="nav-toggle" />
-			<label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
-				<span></span>
-			</label>
-			<nav class="site-nav">
-				<ul>
-					{
-						navLinks.map((link) => (
-							<li>
-								<a href={link.href}>{link.label}</a>
-							</li>
-						))
-					}
-				</ul>
-			</nav>
+			<div class="header-right">
+				<input type="checkbox" id="nav-toggle" class="nav-toggle" />
+				<label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+					<span></span>
+				</label>
+				<nav class="site-nav">
+					<ul>
+						{
+							navLinks.map((link) => (
+								<li>
+									<a href={link.href} data-i18n-en={link.labelEn}>{link.label}</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
+				<button
+					id="lang-switch"
+					type="button"
+					class="lang-switch"
+					aria-label="Switch to English"
+				>
+					EN
+				</button>
+			</div>
 		</header>
 
 		<main>
@@ -120,18 +132,19 @@ const navLinks = [
 				width="220"
 				height="77"
 			/>
-			<p class="footer-tagline">Belleza real. Precio justo.</p>
+			<p class="footer-tagline" data-i18n-en="Real beauty. Fair prices.">Belleza real. Precio justo.</p>
 			<p class="footer-location">Manta, Ecuador</p>
 			<p>
-				<a href="/contacto">Contacto / WhatsApp</a>
+				<a href="/contacto" data-i18n-en="Contact / WhatsApp">Contacto / WhatsApp</a>
 			</p>
-			<p class="footer-copyright">© {currentYear} Naru Estética Avanzada. Todos los derechos reservados.</p>
+			<p class="footer-copyright" data-i18n-en={`© ${currentYear} Naru Advanced Aesthetics. All rights reserved.`}>© {currentYear} Naru Estética Avanzada. Todos los derechos reservados.</p>
 		</footer>
 
-		<!-- Externo (no inline) a propósito: la CSP no permite scripts inline sin
+		<!-- Externos (no inline) a propósito: la CSP no permite scripts inline sin
 		     'unsafe-inline' — mejor sacar el JS a un archivo propio que debilitar la
-		     política. Ver site/public/scripts/tracking.js -->
+		     política. Ver site/public/scripts/tracking.js e i18n.js -->
 		<script is:inline src="/scripts/tracking.js"></script>
+		<script is:inline src="/scripts/i18n.js"></script>
 
 		<style>
 			:global(*) {
@@ -212,6 +225,31 @@ const navLinks = [
 				.brand-wordmark {
 					height: 40px;
 				}
+			}
+
+			.header-right {
+				display: flex;
+				align-items: center;
+				gap: var(--space-3);
+			}
+
+			.lang-switch {
+				padding: var(--space-1) var(--space-2);
+				border: 1px solid var(--color-arena);
+				border-radius: var(--radius);
+				background: transparent;
+				color: var(--color-arena);
+				font-family: var(--font-heading);
+				font-size: var(--text-xs);
+				font-weight: 600;
+				letter-spacing: var(--tracking-wide);
+				cursor: pointer;
+				transition: background 0.2s ease, color 0.2s ease;
+			}
+
+			.lang-switch:hover {
+				background: var(--color-arena);
+				color: var(--color-verde-botanico);
 			}
 
 			.nav-toggle {

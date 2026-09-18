@@ -25,12 +25,16 @@ const canvaLink = siteData.canva_catalogo_link;
 
 <Layout
 	title="Catálogo"
+	titleEn="Catalog"
 	description="Catálogo de tratamientos de Naru Estética Avanzada: micropigmentación, cejas, pestañas, faciales y estética láser."
 >
 	<PageHero
 		eyebrow="Tratamientos"
+		eyebrowEn="Treatments"
 		title="Catálogo"
+		titleEn="Catalog"
 		description="Precios y fotos en proceso de carga — el detalle exacto de cada tratamiento lo confirmamos por WhatsApp."
+		descriptionEn="Prices and photos are being loaded — we confirm the exact details of each treatment over WhatsApp."
 	/>
 
 	<div class="container">
@@ -46,21 +50,23 @@ const canvaLink = siteData.canva_catalogo_link;
 				/>
 			</div>
 		) : servicios.length === 0 ? (
-			<p class="placeholder">Catálogo en construcción — muy pronto vas a ver nuestros tratamientos acá.</p>
+			<p class="placeholder" data-i18n-en="Catalog under construction — you'll see our treatments here very soon.">Catálogo en construcción — muy pronto vas a ver nuestros tratamientos acá.</p>
 		) : (
 			porCategoria
 				.filter((cat: any) => cat.servicios.length > 0)
 				.map((cat: any) => (
 					<section class="categoria">
-						<p class="eyebrow">{cat.servicios.length} tratamientos</p>
-						<h2>{cat.nombre}</h2>
+						<p class="eyebrow" data-i18n-en={`${cat.servicios.length} treatments`}>{cat.servicios.length} tratamientos</p>
+						<h2 data-i18n-en={cat.nombre_en}>{cat.nombre}</h2>
 						<div class="grid">
 							{cat.servicios.map((s: any) => (
 								<ServiceCard
 									nombre={s.nombre}
+									nombreEn={s.nombre_en}
 									precio={s.precio}
 									moneda={s.moneda}
 									descripcion={s.descripcion}
+									descripcionEn={s.descripcion_en}
 								/>
 							))}
 						</div>
@@ -69,7 +75,8 @@ const canvaLink = siteData.canva_catalogo_link;
 		)}
 		{canvaEmbedUrl && canvaLink && (
 			<p class="canva-fallback-link">
-				¿No se ve bien el catálogo? <a href={canvaLink} target="_blank" rel="noopener">Abrilo en Canva →</a>
+				<span data-i18n-en="Catalog not displaying well? ">¿No se ve bien el catálogo? </span>
+				<a href={canvaLink} target="_blank" rel="noopener" data-i18n-en="Open it in Canva →">Abrilo en Canva →</a>
 			</p>
 		)}
 	</div>
